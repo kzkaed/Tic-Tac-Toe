@@ -10,7 +10,7 @@ describe TicTacToe::Runner do
 
   it 'creates a game' do
     expect(runner.game).to eq(game)
-
-
   end
+
+
 end
