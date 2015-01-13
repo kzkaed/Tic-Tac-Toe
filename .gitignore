@@ -21,7 +21,10 @@ tmp
 *.a
 mkmf.log
 
+*.idea
 .idea
+/.idea/
+*/.idea/
 
 .project
 .sublime-project
