@@ -1,3 +1,5 @@
+require 'tic-tac-toe/game_pieces'
+
 module TicTacToe
   class Cell
 

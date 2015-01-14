@@ -1,3 +1,4 @@
+require 'tic-tac-toe/cell.rb'
 module TicTacToe
 
   class Board
@@ -13,7 +14,7 @@ module TicTacToe
                 [Cell.new, Cell.new, Cell.new],
                 [Cell.new, Cell.new, Cell.new]]
       #Array.new(3) { Array.new(3) {Cell.new}}
-      puts @matrix
+      #puts @matrix
 
 
     end

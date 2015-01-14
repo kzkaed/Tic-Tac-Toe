@@ -18,6 +18,8 @@ describe TicTacToe::Board do
       expect(row).to be_instance_of(Array)
     end
   end
+
+
 =begin
   xit 'has a cell in the matrix' do
     RSpec::Matchers.define :be_on_board do |board|

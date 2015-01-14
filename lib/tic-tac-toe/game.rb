@@ -1,10 +1,16 @@
 module TicTacToe
 
   class Game
+    attr_accessor :matrix
+    def initialize
+      @matrix = [
+          ["-", "-", "-"],
+          ["-", "-", "-"],
+          ["-", "-", "-"]
+      ]
 
-    def run
-      true
     end
+
 
   end
 end

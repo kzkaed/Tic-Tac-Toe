@@ -25,14 +25,25 @@ describe TicTacToe::Console do
   it 'uses console in to get message from user via console' do
     $stdin.string = 'message'
     expect(console.in).to match('message')
-
   end
 
-  it 'puts a grid' do
+  it 'puts a board string to console via out' do
     board_string = "\n - | - | - \n - | - | - \n - | - | -"
-    console.out(board_string)
     expect {console.out(board_string)}.to output("\n - | - | - \n - | - | - \n - | - | -\n").to_stdout
   end
+
+  it 'has a board string' do
+    expect(console.board_string).to eq("\n - | - | - \n - | - | - \n - | - | -")
+  end
+
+  it 'can put board_string to console using @board_string' do
+    expect{console.out(console.board_string)}.to output("\n - | - | - \n - | - | - \n - | - | -\n").to_stdout
+  end
+
+
+
+
+
 
 
   #expect { actual }.to output("some output").to_stdout
