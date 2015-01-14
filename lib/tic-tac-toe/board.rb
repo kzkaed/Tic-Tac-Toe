@@ -12,6 +12,7 @@ module TicTacToe
       @matrix = [[Cell.new, Cell.new, Cell.new],
                 [Cell.new, Cell.new, Cell.new],
                 [Cell.new, Cell.new, Cell.new]]
+      #Array.new(3) { Array.new(3) {Cell.new}}
       puts @matrix
 
 
@@ -19,12 +20,6 @@ module TicTacToe
 
 
 
-
-    def default_matrix
-
-      #Array.new(3) { Array.new(3) {Cell.new}}
-
-    end
 
 
   end
