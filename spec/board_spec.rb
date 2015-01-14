@@ -5,8 +5,19 @@ describe TicTacToe::Board do
 
   let(:board) { described_class.new }
 
-  it 'should do something' do
-
-    expect(true).to be(true)
+  xit 'contain 3 rows in matrix' do
+    expect(board.matrix).to include([[]])
   end
-end
+
+  it 'makes three things in each row' do
+    #board.matrix.each do |row|
+      #expect(row).to include([])
+    #end
+  end
+
+
+
+
+  end
+
+
