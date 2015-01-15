@@ -40,6 +40,16 @@ describe TicTacToe::Console do
     expect{console.out(console.board_string)}.to output("\n - | - | - \n - | - | - \n - | - | -\n").to_stdout
   end
 
+  it 'shows a board with numbered grid for players to determine move' do
+    expect{console.out_board_cell_numbers}.to output("\n 1 | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9\n").to_stdout
+  end
+
+
+  it 'gets player1 move' do
+    $stdin.string = 1.to_s
+    expect(console.in).to eq(1.to_s)
+  end
+
 
 
 

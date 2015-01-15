@@ -11,10 +11,13 @@ module TicTacToe
       @game = game
       @user_interface = user_interface
 
+
     end
 
     def run
+      @user_interface.out_board_cell_numbers
       @user_interface.out_board(@game.matrix)
+
 
     end
 

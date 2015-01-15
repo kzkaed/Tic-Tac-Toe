@@ -5,6 +5,7 @@ class MockUserInterface
     @prepare_called = false
     @out_called = false
     @out_board_called = false
+    @out_board_cell_numbers_called = false
 
     @game
     @game_string = ""
@@ -29,6 +30,10 @@ class MockUserInterface
     @out_board_called = true
   end
 
+  def out_board_cell_numbers
+    @out_board_cell_numbers_called = true
+  end
+
 #    ******* Mock expectations *******
 
 
@@ -46,6 +51,10 @@ class MockUserInterface
 
   def out_board_called?
     return @out_board_called
+  end
+
+  def out_board_cell_numbers_called?
+    return @out_board_cell_numbers_called
   end
 
 end
