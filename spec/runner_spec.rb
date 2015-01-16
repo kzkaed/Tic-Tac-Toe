@@ -24,7 +24,7 @@ describe TicTacToe::Runner do
   it 'user interface displays board' do
     runner.run
 
-    expect(user_interface.out_board(game)).to eq(true)
+    expect(user_interface.out_board(game.board)).to eq(true)
   end
 
   it 'user_interface displays board with cell numbers for reference' do
@@ -32,12 +32,17 @@ describe TicTacToe::Runner do
     expect(user_interface.out_board_cell_numbers_called?).to eq(true)
   end
 
-  it "user interface displays player 1 move" do
-    move = 1
-    player.moves << 1
+
+  it "user interface displays player move" do
+    move = "x"
+    player.moves << move
+
+
     runner.run
 
-    expect(player.make_move_called?).to eq(false)
+    expect(player.place_move_called?).to eq(false)
+    expect(user_interface.out_called?).to eq(false)
+    expect(user_interface.out(move)).to eq(['x'])
   end
 
 

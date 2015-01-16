@@ -44,11 +44,37 @@ describe TicTacToe::Console do
     expect{console.out_board_cell_numbers}.to output("\n 1 | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9\n").to_stdout
   end
 
+  it 'displays a formatted board' do
+    board = [
+        ["x", "2", "3"],
+        ["4", "5", "6"],
+        ["7", "8", "9"]
+    ]
+    expect{console.out_board(board)}.to output("\n x | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9\n").to_stdout
+
+    board2 = [
+        ["x", "o", "3"],
+        ["4", "5", "6"],
+        ["7", "8", "9"]
+    ]
+    expect{console.out_board(board2)}.to output("\n x | o | 3 \n 4 | 5 | 6 \n 7 | 8 | 9\n").to_stdout
+
+    board_final = [
+        ["x", "o", "o"],
+        ["x", "x", "6"],
+        ["x", "8", "o"]
+    ]
+    expect{console.out_board(board_final)}.to output("\n x | o | o \n x | x | 6 \n x | 8 | o\n").to_stdout
+
+
+  end
+
 
   it 'gets player1 move' do
     $stdin.string = 1.to_s
     expect(console.in).to eq(1.to_s)
   end
+
 
 
 

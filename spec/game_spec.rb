@@ -7,10 +7,8 @@ describe TicTacToe::Game do
 
   it 'has a matrix of 3 rows of 3 items' do
 
-    expect(game.matrix).to eq([
-                                  ["-", "-", "-"],
-                                  ["-", "-", "-"],
-                                  ["-", "-", "-"]
-                              ])
+    expect(game.board).to eq([["1", "2", "3"],
+                              ["4", "5", "6"],
+                              ["7", "8", "9"]])
   end
 end

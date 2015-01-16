@@ -1,15 +1,15 @@
 class MockGame
-attr_accessor :matrix
+attr_accessor :board
 
   def initialize
-    @matrix = [
-        ["-", "-", "-"],
-        ["-", "-", "-"],
-        ["-", "-", "-"]
+    @board = [
+        ["1", "2", "3"],
+        ["4", "5", "6"],
+        ["7", "8", "9"]
     ]
   end
 
 
-
+#    ******* Mock expectations *******
 
 end

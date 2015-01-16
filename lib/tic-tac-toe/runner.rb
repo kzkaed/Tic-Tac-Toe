@@ -16,7 +16,10 @@ module TicTacToe
 
     def run
       @user_interface.out_board_cell_numbers
-      @user_interface.out_board(@game.matrix)
+      @user_interface.out_board(@game.board)
+
+      #move = @player.place_move#move needs to be board representation
+
 
 
     end
