@@ -22,7 +22,7 @@ module TicTacToe
       gets
     end
 
-    def out_board(board)
+    def out_board2(board)
       output_string = "\n 1 | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9"
       collect = ""
       board.each do |row|
@@ -40,6 +40,21 @@ module TicTacToe
       output_string.gsub!(/8/,collect[7])
       output_string.gsub!(/9/,collect[8])
 
+      out(output_string)
+    end
+
+
+    def out_board(board)
+      output_string = "\n 1 | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9"
+      collect = ""
+      board.each do |row|
+        row.each do |cell|
+          collect<<cell
+        end
+      end
+      (1..9).each do |cell|
+        output_string.gsub!(/#{cell.to_s}/, collect[cell-1])
+      end
       out(output_string)
     end
 
