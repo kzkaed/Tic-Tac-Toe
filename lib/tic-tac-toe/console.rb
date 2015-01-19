@@ -1,13 +1,12 @@
 module TicTacToe
   class Console
 
-    attr_accessor :board_string
-
     CELL_NUMBERS = "\n 1 | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9"
+    CELL_DASHES = "\n - | - | - \n - | - | - \n - | - | -"
 
 
     def initialize
-      @board_string = "\n - | - | - \n - | - | - \n - | - | -"
+      @cell_dashes = CELL_DASHES
       @cell_numbers = CELL_NUMBERS
 
 
@@ -39,7 +38,7 @@ module TicTacToe
 
     def validate(input)
       validated_input = input
-
+      #pending
       return validated_input
     end
 

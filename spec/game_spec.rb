@@ -46,7 +46,7 @@ describe TicTacToe::Game do
   end
 
 
-  it 'gets a diagonal cells from board' do
+  it 'gets a diagonal cells from board no match' do
     column = 0
     row = 0
     expect(game.get_cell(row,column)).to eq("1")
@@ -63,7 +63,7 @@ describe TicTacToe::Game do
 
   end
 
-  it 'gets a diagonal cells from board and checks for match' do
+  it 'gets a diagonal cells descent from board and checks for match' do
     game.board = [["x", "2", "3"],
                   ["4", "x", "6"],
                   ["7", "8", "x"]]
@@ -84,7 +84,7 @@ describe TicTacToe::Game do
 
   end
 
-  it 'gets a diagonal cells from board and checks for match' do
+  it 'gets diagonal cells ascent from board and checks for match' do
     game.board = [["1", "2", "x"],
                   ["4", "x", "6"],
                   ["x", "8", "9"]]
@@ -146,14 +146,6 @@ describe TicTacToe::Game do
     expect(game.down?).to eq(true)
   end
 
-  it 'is a draw' do
-    game.board = [["x", "o", "x"],
-                  ["x", "o", "o"],
-                  ["o", "x", "x"]]
-
-    expect(game.draw?).to eq(true)
-
-  end
 
   it 'is a draw' do
     game.board = [["1", "2", "3"],
@@ -183,8 +175,16 @@ describe TicTacToe::Game do
   end
 
 
+  it 'is has a win' do
+    game.board = [["x", "o", "x"],
+                  ["x", "x", "o"],
+                  ["o", "x", "x"]]
 
 
+    expect(game.winner?).to eq(true)
+  end
+
+ #stubbing
   it 'returns game end if winner? is true' do
     allow(game).to receive(:winner?).and_return(true)
     allow(game).to receive(:draw?).and_return(false)
@@ -196,6 +196,7 @@ describe TicTacToe::Game do
     allow(game).to receive(:draw?).and_return(true)
     expect(game.end?).to eq true
   end
+
 
 
 

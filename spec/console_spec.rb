@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'tic-tac-toe/console.rb'
+require 'tic-tac-toe/game'
 
 describe TicTacToe::Console do
 
@@ -32,16 +33,14 @@ describe TicTacToe::Console do
     expect {console.output(board_string)}.to output("\n - | - | - \n - | - | - \n - | - | -\n").to_stdout
   end
 
-  it 'has a board string' do
-    expect(console.board_string).to eq("\n - | - | - \n - | - | - \n - | - | -")
-  end
-
-  it 'puts board_string to console using @board_string' do
-    expect{console.output(console.board_string)}.to output("\n - | - | - \n - | - | - \n - | - | -\n").to_stdout
-  end
-
-  it 'puts a board with numbered grid for players to determine move' do
+  it 'puts a board with numbered cells with string constant' do
     expect{console.display_board_cell_numbers}.to output("\n 1 | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9\n").to_stdout
+  end
+
+  it 'puts a board with numbered cells via game board' do
+    game = TicTacToe::Game.new
+    board = game.board
+    expect{console.display_board(board)}.to output("\n 1 | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9\n").to_stdout
   end
 
   it 'displays a formatted board' do
@@ -71,7 +70,6 @@ describe TicTacToe::Console do
 
 
   it 'prompts the player and receives input' do
-
     $stdin.string = 1.to_s
     expect(console.in_move).to eq(1.to_s)
   end

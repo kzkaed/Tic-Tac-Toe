@@ -21,10 +21,17 @@ describe TicTacToe::HumanPlayer do
     expect(player2.mark).to eq('o')
   end
 
-  it'get move from user_interface' do
+  it'gets player1 move from user_interface' do
    move = "1"
    user_interface.moves << move
   expect(player1.get_move).to eq(move)
-end
+  end
+
+  it'gets player2 from user_interface' do
+    move = "2"
+    user_interface.moves << move
+    expect(player2.get_move).to eq(move)
+  end
+
 
 end

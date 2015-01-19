@@ -3,7 +3,7 @@ require 'tic-tac-toe/runner.rb'
 require 'mocks/mock_game'
 require 'mocks/mock_user_interface'
 require 'mocks/mock_player'
-require 'tic-tac-toe/game'
+
 
 
 
