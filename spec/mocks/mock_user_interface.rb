@@ -1,37 +1,46 @@
 class MockUserInterface
 
-  attr_accessor :messages
+  attr_accessor :content_holder, :board, :moves
   def initialize
     @prepare_called = false
-    @out_called = false
-    @out_board_called = false
-    @out_board_cell_numbers_called = false
+    @output_called = false
+    @display_board_called = false
+    @display_board_cell_numbers_called = false
 
-    @game
-    @game_string = ""
-    @messages = []
+    @board
+    @board_string = ""
+    @content_holder = []
+    @moves = []
   end
 
   def prepare
     @prepare_called = true
   end
 
+  def display_board_cell_numbers
+    @display_board_cell_numbers_called = true
+  end
+
+  def display_board(board)
+    @board = board
+    @display_board_called = true
+  end
+
+
+  def output (content)
+    @output_called = true
+    @content_holder << content
+  end
+
+
   def display_game_result()
     @display_game_result_called = true
   end
 
-  def out (messages)
-    @out_called = true
-    @messages << messages
-  end
 
-  def out_board(game)
-    @game = game
-    @out_board_called = true
-  end
-
-  def out_board_cell_numbers
-    @out_board_cell_numbers_called = true
+  def in_move
+    @in_move_called = true
+    @moves.pop
   end
 
 #    ******* Mock expectations *******
@@ -45,16 +54,16 @@ class MockUserInterface
     return @display_game_result_called
   end
 
-  def out_called?
-    return @out_called
+  def output_called?
+    return @output_called
   end
 
-  def out_board_called?
-    return @out_board_called
+  def display_board_called?
+    return @display_board_called
   end
 
-  def out_board_cell_numbers_called?
-    return @out_board_cell_numbers_called
+  def display_board_cell_numbers_called?
+    return @display_board_cell_numbers_called
   end
 
 end

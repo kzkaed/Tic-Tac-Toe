@@ -16,32 +16,32 @@ describe TicTacToe::Console do
 
 
 
-  it 'uses out to put a message to the console' do
-    console.out('a message')
+  it 'puts a message to the console' do
+    console.output('a message')
     expect($stdout.string).to match('a message')
-    expect{console.out('output')}.to output("output\n").to_stdout
+    expect{console.output('output')}.to output("output\n").to_stdout
   end
 
-  it 'uses console in to get message from user via console' do
+  it 'gets message from user via console' do
     $stdin.string = 'message'
-    expect(console.in).to match('message')
+    expect(console.input).to match('message')
   end
 
   it 'puts a board string to console via out' do
     board_string = "\n - | - | - \n - | - | - \n - | - | -"
-    expect {console.out(board_string)}.to output("\n - | - | - \n - | - | - \n - | - | -\n").to_stdout
+    expect {console.output(board_string)}.to output("\n - | - | - \n - | - | - \n - | - | -\n").to_stdout
   end
 
   it 'has a board string' do
     expect(console.board_string).to eq("\n - | - | - \n - | - | - \n - | - | -")
   end
 
-  it 'can put board_string to console using @board_string' do
-    expect{console.out(console.board_string)}.to output("\n - | - | - \n - | - | - \n - | - | -\n").to_stdout
+  it 'puts board_string to console using @board_string' do
+    expect{console.output(console.board_string)}.to output("\n - | - | - \n - | - | - \n - | - | -\n").to_stdout
   end
 
-  it 'shows a board with numbered grid for players to determine move' do
-    expect{console.out_board_cell_numbers}.to output("\n 1 | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9\n").to_stdout
+  it 'puts a board with numbered grid for players to determine move' do
+    expect{console.display_board_cell_numbers}.to output("\n 1 | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9\n").to_stdout
   end
 
   it 'displays a formatted board' do
@@ -50,33 +50,38 @@ describe TicTacToe::Console do
         ["4", "5", "6"],
         ["7", "8", "9"]
     ]
-    expect{console.out_board(board)}.to output("\n x | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9\n").to_stdout
+    expect{console.display_board(board)}.to output("\n x | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9\n").to_stdout
 
     board2 = [
         ["x", "o", "3"],
         ["4", "5", "6"],
         ["7", "8", "9"]
     ]
-    expect{console.out_board(board2)}.to output("\n x | o | 3 \n 4 | 5 | 6 \n 7 | 8 | 9\n").to_stdout
+    expect{console.display_board(board2)}.to output("\n x | o | 3 \n 4 | 5 | 6 \n 7 | 8 | 9\n").to_stdout
 
     board_final = [
         ["x", "o", "o"],
         ["x", "x", "6"],
         ["x", "8", "o"]
     ]
-    expect{console.out_board(board_final)}.to output("\n x | o | o \n x | x | 6 \n x | 8 | o\n").to_stdout
+    expect{console.display_board(board_final)}.to output("\n x | o | o \n x | x | 6 \n x | 8 | o\n").to_stdout
 
 
   end
 
 
-  it 'gets player1 move' do
+  it 'prompts the player and receives input' do
+
     $stdin.string = 1.to_s
-    expect(console.in).to eq(1.to_s)
+    expect(console.in_move).to eq(1.to_s)
   end
 
 
-
+  it 'validates user input' do
+    input = 1.to_s
+    validated_input = 1.to_s
+    expect(console.validate(input)).to eq(validated_input)
+  end
 
 
 
