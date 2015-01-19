@@ -4,12 +4,9 @@ module TicTacToe
     CELL_NUMBERS = "\n 1 | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9"
     CELL_DASHES = "\n - | - | - \n - | - | - \n - | - | -"
 
-
     def initialize
       @cell_dashes = CELL_DASHES
       @cell_numbers = CELL_NUMBERS
-
-
     end
 
     def display_board_cell_numbers
@@ -32,8 +29,8 @@ module TicTacToe
 
     def in_move
       move = ''
-       output("Enter a cell number: ")
-       move = input
+      output("Enter a cell number: ")
+      move = input
     end
 
     def validate(input)
@@ -49,9 +46,6 @@ module TicTacToe
     def input
       gets
     end
-
-
-
 
   end
 end

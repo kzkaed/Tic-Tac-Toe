@@ -184,7 +184,7 @@ describe TicTacToe::Game do
     expect(game.winner?).to eq(true)
   end
 
- #stubbing
+ #stubs
   it 'returns game end if winner? is true' do
     allow(game).to receive(:winner?).and_return(true)
     allow(game).to receive(:draw?).and_return(false)

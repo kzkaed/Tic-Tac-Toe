@@ -15,8 +15,6 @@ describe TicTacToe::Console do
     $stdin = STDIN
   end
 
-
-
   it 'puts a message to the console' do
     console.output('a message')
     expect($stdout.string).to match('a message')
@@ -64,16 +62,12 @@ describe TicTacToe::Console do
         ["x", "8", "o"]
     ]
     expect{console.display_board(board_final)}.to output("\n x | o | o \n x | x | 6 \n x | 8 | o\n").to_stdout
-
-
   end
-
 
   it 'prompts the player and receives input' do
     $stdin.string = 1.to_s
     expect(console.in_move).to eq(1.to_s)
   end
-
 
   it 'validates user input' do
     input = 1.to_s
@@ -81,10 +75,4 @@ describe TicTacToe::Console do
     expect(console.validate(input)).to eq(validated_input)
   end
 
-
-
-
-
-  #expect { actual }.to output("some output").to_stdout
-  #expect { actual }.to output("").to_stderr
 end
