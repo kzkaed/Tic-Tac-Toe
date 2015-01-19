@@ -6,6 +6,8 @@ attr_accessor :board, :boards, :move
     @end_called = false
     @draw_called = false
     @winner_called = false
+    @play_again_called = false
+    @clear_called = false
 
     @board = [
         ["1", "2", "3"],
@@ -36,6 +38,15 @@ attr_accessor :board, :boards, :move
     @end_called = true
   end
 
+  def play_again?
+    @play_again_called = true
+    false
+  end
+
+  def clear
+    @clear_called = true
+  end
+
 
 #    ******* Mock expectations *******
     def place_move_called?
@@ -54,5 +65,12 @@ attr_accessor :board, :boards, :move
     return @draw_called
   end
 
+  def play_again_called?
+    return @play_again_called
+  end
+
+  def clear_called?
+    return @clear_called
+  end
 
 end

@@ -184,6 +184,19 @@ describe TicTacToe::Game do
     expect(game.winner?).to eq(true)
   end
 
+  it 'plays again' do
+    expect(game.play_again?).to eq(false)
+  end
+
+  it 'clears board' do
+    board = [
+        ["1", "2", "3"],
+        ["4", "5", "6"],
+        ["7", "8", "9"]
+    ]
+    expect(game.clear).to eq(board)
+  end
+
  #stubs
   it 'returns game end if winner? is true' do
     allow(game).to receive(:winner?).and_return(true)
@@ -196,6 +209,22 @@ describe TicTacToe::Game do
     allow(game).to receive(:draw?).and_return(true)
     expect(game.end?).to eq true
   end
+
+  it 'has a board mapping that maps cell number to coordinates of board' do
+    expect(game.board_map).to eq({
+                                     "1" => [0,0],
+                                     "2" => [0,1],
+                                     "3" => [0,2],
+                                     "4" => [1,0],
+                                     "5" => [1,1],
+                                     "6" => [1,2],
+                                     "7" => [2,0],
+                                     "8" => [2,1],
+                                     "9" => [2,2]
+                                 })
+  end
+
+
 
 
 

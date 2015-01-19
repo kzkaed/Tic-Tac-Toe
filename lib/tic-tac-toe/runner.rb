@@ -12,8 +12,6 @@ module TicTacToe
       @user_interface = user_interface
       @player1 = player1
       @player2 = player2
-
-
     end
 
     def run
@@ -33,6 +31,13 @@ module TicTacToe
 
       end
       @user_interface.output("results: win?" + @game.winner?.inspect+" draw?" + @game.draw?.inspect)
+      @user_interface.output('play again? Y for yes, or N for no')
+      play_again = @user_interface.input
+      if play_again == "Y"
+        @game.clear
+        run
+      end
+
     end
 
   end

@@ -44,7 +44,7 @@ module TicTacToe
     end
 
     def input
-      gets
+      gets.chomp
     end
 
   end

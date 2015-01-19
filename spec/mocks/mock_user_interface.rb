@@ -6,6 +6,7 @@ class MockUserInterface
     @output_called = false
     @display_board_called = false
     @display_board_cell_numbers_called = false
+    @input_called = false
 
     @board
     @board_string = ""
@@ -43,6 +44,11 @@ class MockUserInterface
     @moves.pop
   end
 
+  def input
+    @input_called = true
+
+  end
+
 #    ******* Mock expectations *******
 
 
@@ -66,4 +72,7 @@ class MockUserInterface
     return @display_board_cell_numbers_called
   end
 
+  def input
+    return @input_called
+  end
 end
