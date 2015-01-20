@@ -101,12 +101,21 @@ describe TicTacToe::Runner do
     expect(user_interface.display_game_result_called?).to eq(true)
   end
 
-  it 'send play again response to game and if false end' do
-    user_interface.play_again = false
+  it 'gets play again response from user interface, if false,game ends' do
+    user_interface.play_again << false
     runner.run
     expect(user_interface.play_again_called?).to eq(true)
     expect(game.clear_called?).to eq(false)
   end
+
+  it 'gets play again response from user interface, if true, play game again' do
+    user_interface.play_again << true
+    runner.run
+    expect(user_interface.play_again_called?).to eq(true)
+    expect(game.clear_called?).to eq(true)
+
+  end
+
 
   it 'plays game again' do
     runner.run_again

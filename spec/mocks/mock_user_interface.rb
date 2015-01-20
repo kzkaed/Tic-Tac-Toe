@@ -7,7 +7,7 @@ class MockUserInterface
     @display_game_result_called = false
     @play_again_called = false
 
-    @play_again = false
+    @play_again = []
     @board
     @board_string = ""
     @content_holder = []
@@ -32,7 +32,7 @@ class MockUserInterface
 
   def play_again?
     @play_again_called = true
-    play_again
+    play_again.pop
   end
 
 #    ******* Mock expectations *******
