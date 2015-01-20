@@ -65,5 +65,16 @@ describe TicTacToe::Console do
     expect(console.receive_cell_number).to eq(1.to_s)
   end
 
+  it 'displays results' do
+    result = "\n"
+    result_string = "win?#{result["winner"]} draw?#{result["draw"]}\n"
+    expect{console.display_game_result(result)}.to output(result_string).to_stdout
+  end
+
+  it 'plays again prompt and input' do
+    $stdin.string = "Y"
+    expect(console.play_again?).to eq(true)
+  end
+
 
 end

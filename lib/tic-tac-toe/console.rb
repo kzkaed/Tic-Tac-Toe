@@ -25,6 +25,18 @@ module TicTacToe
       gets.chomp
     end
 
+    def display_game_result(result)
+      result_string = "win?#{result["winner"]} draw?#{result["draw"]}"
+      #do some stuff on result
+      output(result_string)
+    end
+
+    def play_again?
+      output("play again? Y for yes, else no")
+      response = input
+      return response == 'Y'
+    end
+
 
     private
     def create_board_output(board)

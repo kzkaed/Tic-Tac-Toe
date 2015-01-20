@@ -32,17 +32,11 @@ module TicTacToe
     end
 
     def get_cell(row, column)
-      return board[row][column]
+       board[row][column]
     end
-
-    def set_cell(row,column,mark)
-      board[row][column]= mark
-    end
-
 
     def end?
-      return true if winner? || draw?
-      false
+       winner? || draw?
     end
 
     def winner?
@@ -54,12 +48,12 @@ module TicTacToe
 
     def draw?
       remaining_values = board.flatten.uniq.length
-      return true if remaining_values == 2
-      false
+      remaining_values == 2 && !winner?
 
     end
 
     def diagonal?
+
       diagonal = []
       (0..2).each_with_index do |index|
         diagonal << get_cell(index,index)
@@ -76,44 +70,26 @@ module TicTacToe
     end
 
     def down?
-      down = []
-      (0..2).each_with_index do |index|
-        down << get_cell(index,0)
+      (0..2).each_with_index do |column|
+        down = []
+        (0..2).each_with_index do |row|
+          down << get_cell(row,column)
+        end
+        return true if down.uniq.length == 1
       end
-      return true if down.uniq.length == 1
-
-      down = []
-      (0..2).each_with_index do |index|
-        down << get_cell(index,1)
-      end
-      return true if down.uniq.length == 1
-
-      down = []
-      (0..2).each_with_index do |index|
-        down << get_cell(index,2)
-      end
-      return true if down.uniq.length == 1
       false
     end
 
+
     def across?
-      across = []
-      (0..2).each_with_index do |index|
-        across << get_cell(0,index)
-      end
-      return true if across.uniq.length == 1
+      (0..2).each_with_index do |row|
+        across = []
+        (0..2).each_with_index do |column|
+          across << get_cell(row,column)
+        end
+        return true if across.uniq.length == 1
 
-      across = []
-      (0..2).each_with_index do |index|
-        across << get_cell(1,index)
-      end
-      return true if across.uniq.length == 1
-
-      across = []
-      (0..2).each_with_index do |index|
-        across << get_cell(2,index)
-      end
-      return true if across.uniq.length == 1
+        end
       false
     end
 
@@ -129,6 +105,10 @@ module TicTacToe
       ]
     end
 
+    def result
+      {'winner'=> winner?,'draw' => draw?}
+    end
+
     private
     def create_board(move,mark)
       @board_map.each_pair do |cell_number, coordinate|
@@ -137,6 +117,10 @@ module TicTacToe
         end
       end
       board
+    end
+
+    def set_cell(row,column,mark)
+      board[row][column]= mark
     end
 
   end

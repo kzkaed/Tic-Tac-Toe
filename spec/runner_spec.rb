@@ -86,17 +86,32 @@ describe TicTacToe::Runner do
     expect(game.end_called?).to be(true)
   end
 
-  it ' displays results to user interface' do
-    runner.run
-    expect(user_interface.output_called?).to eq(true)
-  end
-
   it "player2 get move from user interface" do
     move = "1"
     player2.moves << move
     runner.run
     expect(player2.get_move).to eq("1")
     expect(player2.get_move_called?).to eq(true)
+  end
+
+  it 'displays results to user interface' do
+
+    runner.run
+    expect(game.result_called?).to eq(true)
+    expect(user_interface.display_game_result_called?).to eq(true)
+  end
+
+  it 'send play again response to game and if false end' do
+    user_interface.play_again = false
+    runner.run
+    expect(user_interface.play_again_called?).to eq(true)
+    expect(game.clear_called?).to eq(false)
+  end
+
+  it 'plays game again' do
+    runner.run_again
+    expect(game.clear_called?).to eq(true)
+    expect(user_interface.play_again_called?).to eq(true)
   end
 
 end

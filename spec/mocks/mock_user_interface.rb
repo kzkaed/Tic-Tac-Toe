@@ -1,16 +1,18 @@
 class MockUserInterface
 
-  attr_accessor :content_holder, :board, :moves
+  attr_accessor :content_holder, :board, :moves, :results, :play_again
   def initialize
-    @output_called = false
     @display_board_called = false
-    @input_called = false
     @receive_cell_number_called = false
+    @display_game_result_called = false
+    @play_again_called = false
 
+    @play_again = false
     @board
     @board_string = ""
     @content_holder = []
     @moves = []
+    @results = []
   end
 
   def display_board(board)
@@ -23,17 +25,14 @@ class MockUserInterface
     @moves.pop
   end
 
-  def output (content)
-    @output_called = true
-    @content_holder << content
-  end
-
-  def input
-    @input_called = true
-  end
-
-  def display_game_result()
+  def display_game_result(result)
+    @results << result
     @display_game_result_called = true
+  end
+
+  def play_again?
+    @play_again_called = true
+    play_again
   end
 
 #    ******* Mock expectations *******
@@ -46,15 +45,11 @@ class MockUserInterface
     return @receive_cell_number_called
   end
 
-  def output_called?
-    return @output_called
-  end
-
-  def input
-    return @input_called
-  end
-
   def display_game_result_called?
     return @display_game_result_called
+  end
+
+  def play_again_called?
+    return @play_again_called
   end
 end

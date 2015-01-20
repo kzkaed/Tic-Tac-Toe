@@ -28,18 +28,17 @@ module TicTacToe
         current_board = @game.place_move(current_move, @player2.mark)
         @user_interface.display_board(current_board)
         @game.board = current_board
-
       end
-      @user_interface.output("results: win? #{@game.winner?.inspect}  draw? #{@game.draw?.inspect}")
-      @user_interface.output("play again? Y for yes, else no")
 
-      if @user_interface.input == "Y"
-        p "yes"
+      @user_interface.display_game_result(@game.result)
+
+      run_again if @user_interface.play_again?
+
+     end
+
+    def run_again
         @game.clear
-
         run
-      end
-
     end
 
   end

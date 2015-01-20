@@ -197,19 +197,6 @@ describe TicTacToe::Game do
     expect(game.clear).to eq(board)
   end
 
- #stubs
-  it 'returns game end if winner? is true' do
-    allow(game).to receive(:winner?).and_return(true)
-    allow(game).to receive(:draw?).and_return(false)
-    expect(game.end?).to eq true
-  end
-
-  it 'returns game end if draw? is true' do
-    allow(game).to receive(:winner?).and_return(false)
-    allow(game).to receive(:draw?).and_return(true)
-    expect(game.end?).to eq true
-  end
-
   it 'has a board mapping that maps cell number to coordinates of board' do
     expect(game.board_map).to eq({
                                      "1" => [0,0],
@@ -224,13 +211,23 @@ describe TicTacToe::Game do
                                  })
   end
 
+  #stubs
+  it 'returns game end if winner? is true' do
+    allow(game).to receive(:winner?).and_return(true)
+    allow(game).to receive(:draw?).and_return(false)
+    expect(game.end?).to eq true
+  end
 
+  it 'returns game end if draw? is true' do
+    allow(game).to receive(:winner?).and_return(false)
+    allow(game).to receive(:draw?).and_return(true)
+    expect(game.end?).to eq true
+  end
 
-
-
-
-
-
-
+  it 'puts together a result ' do
+    allow(game).to receive(:winner?).and_return(true)
+    allow(game).to receive(:draw?).and_return(false)
+    expect(game.result).to eq({'winner' => true, 'draw' => false})
+  end
 
 end
