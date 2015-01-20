@@ -42,11 +42,6 @@ attr_accessor :board, :boards, :move
     @end_called = true
   end
 
-  def play_again?
-    @play_again_called = true
-    false
-  end
-
   def clear
     @clear_called = true
   end

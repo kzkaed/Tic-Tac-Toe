@@ -81,7 +81,6 @@ describe TicTacToe::Runner do
   end
 
   it 'breaks if game end ' do
-
     runner.run
     expect(game.end_called?).to be(true)
   end
@@ -95,7 +94,6 @@ describe TicTacToe::Runner do
   end
 
   it 'displays results to user interface' do
-
     runner.run
     expect(game.result_called?).to eq(true)
     expect(user_interface.display_game_result_called?).to eq(true)
@@ -113,9 +111,7 @@ describe TicTacToe::Runner do
     runner.run
     expect(user_interface.play_again_called?).to eq(true)
     expect(game.clear_called?).to eq(true)
-
   end
-
 
   it 'plays game again' do
     runner.run_again

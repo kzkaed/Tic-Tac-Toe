@@ -1,7 +1,6 @@
 require 'tic-tac-toe/game'
 
 
-
 module TicTacToe
 
   class Runner
@@ -17,7 +16,7 @@ module TicTacToe
     def run
       @user_interface.display_board(@game.board)
 
-      until(@game.end?)
+      until (@game.end?)
         current_move = @player1.get_move
         current_board = @game.place_move(current_move, @player1.mark)
         @user_interface.display_board(current_board)
@@ -33,12 +32,11 @@ module TicTacToe
       @user_interface.display_game_result(@game.result)
 
       run_again if @user_interface.play_again?
-
-     end
+    end
 
     def run_again
-        @game.clear
-        run
+      @game.clear
+      run
     end
 
   end

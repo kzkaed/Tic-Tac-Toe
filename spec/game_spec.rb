@@ -184,10 +184,6 @@ describe TicTacToe::Game do
     expect(game.winner?).to eq(true)
   end
 
-  it 'plays again' do
-    expect(game.play_again?).to eq(false)
-  end
-
   it 'clears board' do
     board = [
         ["1", "2", "3"],
