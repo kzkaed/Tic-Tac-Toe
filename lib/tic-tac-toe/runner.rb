@@ -30,11 +30,13 @@ module TicTacToe
         @game.board = current_board
 
       end
-      @user_interface.output("results: win?" + @game.winner?.inspect+" draw?" + @game.draw?.inspect)
-      @user_interface.output('play again? Y for yes, or N for no')
-      play_again = @user_interface.input
-      if play_again == "Y"
+      @user_interface.output("results: win? #{@game.winner?.inspect}  draw? #{@game.draw?.inspect}")
+      @user_interface.output("play again? Y for yes, else no")
+
+      if @user_interface.input == "Y"
+        p "yes"
         @game.clear
+
         run
       end
 

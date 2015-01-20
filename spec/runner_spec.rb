@@ -4,9 +4,6 @@ require 'mocks/mock_game'
 require 'mocks/mock_user_interface'
 require 'mocks/mock_player'
 
-
-
-
 describe TicTacToe::Runner do
 
   let!(:game) { MockGame.new }
@@ -100,14 +97,6 @@ describe TicTacToe::Runner do
     runner.run
     expect(player2.get_move).to eq("1")
     expect(player2.get_move_called?).to eq(true)
-
   end
-
-  it 'displays play again prompt' do
-
-  end
-
-
-
 
 end

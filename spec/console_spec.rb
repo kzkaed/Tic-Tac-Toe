@@ -31,11 +31,7 @@ describe TicTacToe::Console do
     expect {console.output(board_string)}.to output("\n - | - | - \n - | - | - \n - | - | -\n").to_stdout
   end
 
-  it 'puts a board with numbered cells with string constant' do
-    expect{console.display_board_cell_numbers}.to output("\n 1 | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9\n").to_stdout
-  end
-
-  it 'puts a board with numbered cells via game board' do
+ it 'puts a board with numbered cells via game board' do
     game = TicTacToe::Game.new
     board = game.board
     expect{console.display_board(board)}.to output("\n 1 | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9\n").to_stdout
@@ -66,13 +62,8 @@ describe TicTacToe::Console do
 
   it 'prompts the player and receives input' do
     $stdin.string = 1.to_s
-    expect(console.in_move).to eq(1.to_s)
+    expect(console.receive_cell_number).to eq(1.to_s)
   end
 
-  it 'validates user input' do
-    input = 1.to_s
-    validated_input = 1.to_s
-    expect(console.validate(input)).to eq(validated_input)
-  end
 
 end

@@ -1,42 +1,20 @@
 module TicTacToe
   class Console
 
-    CELL_NUMBERS = "\n 1 | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9"
-    CELL_DASHES = "\n - | - | - \n - | - | - \n - | - | -"
+    CELL_NUMBER_PROMPT = "Enter a cell number: "
 
     def initialize
-      @cell_dashes = CELL_DASHES
-      @cell_numbers = CELL_NUMBERS
-    end
-
-    def display_board_cell_numbers
-      output(@cell_numbers)
+      @cell_number_prompt = CELL_NUMBER_PROMPT
     end
 
     def display_board(board)
-      output_string = "\n 1 | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9"
-      collect = ""
-      board.each do |row|
-        row.each do |cell|
-          collect<<cell
-        end
-      end
-      (1..9).each do |cell|
-        output_string.gsub!(/#{cell.to_s}/, collect[cell-1])
-      end
-      output(output_string)
+      output(create_board_output(board))
     end
 
-    def in_move
-      move = ''
-      output("Enter a cell number: ")
-      move = input
-    end
-
-    def validate(input)
-      validated_input = input
-      #pending
-      return validated_input
+    def receive_cell_number
+      cell_number = ''
+      output(@cell_number_prompt)
+      cell_number = input
     end
 
     def output(value)
@@ -45,6 +23,22 @@ module TicTacToe
 
     def input
       gets.chomp
+    end
+
+
+    private
+    def create_board_output(board)
+      cell_numbers = "\n 1 | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9"
+      collect = ""
+      board.each do |row|
+        row.each do |cell|
+          collect<<cell
+        end
+      end
+      (1..9).each do |cell|
+        cell_numbers.gsub!(/#{cell.to_s}/, collect[cell-1])
+      end
+      cell_numbers
     end
 
   end

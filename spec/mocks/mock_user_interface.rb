@@ -39,7 +39,7 @@ class MockUserInterface
   end
 
 
-  def in_move
+  def receive_cell_number
     @in_move_called = true
     @moves.pop
   end
