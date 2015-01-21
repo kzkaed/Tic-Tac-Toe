@@ -41,33 +41,18 @@ module TicTacToe
     end
 
     def winner?
-      return true if diagonal?
-      return true if across?
-      return true if down?
-      false
+      return diagonal?
+      return across?
+      return down?
     end
 
     def draw?
       remaining_values = board.flatten.uniq.length
-      remaining_values == 2 && !winner?
-
+      return remaining_values == 2 && !winner?
     end
 
     def diagonal?
-
-      diagonal = []
-      (0..2).each_with_index do |index|
-        diagonal << get_cell(index, index)
-      end
-      return true if diagonal.uniq.length == 1
-
-      diagonal = []
-      (0..2).each_with_index do |index|
-        diagonal << get_cell(index, 2 - index)
-      end
-      return true if diagonal.uniq.length == 1
-
-      false
+      return diagonal_ascent? || diagonal_descent?
     end
 
     def down?
@@ -106,6 +91,23 @@ module TicTacToe
       {'winner' => winner?, 'draw' => draw?}
     end
 
+    def diagonal_descent?
+      diagonal = []
+      (0..2).each_with_index do |index|
+        diagonal << get_cell(index, index)
+      end
+      return diagonal.uniq.length == 1
+    end
+
+    def diagonal_ascent?
+      diagonal = []
+      (0..2).each_with_index do |index|
+        diagonal << get_cell(index, 2 - index)
+      end
+      return diagonal.uniq.length == 1
+    end
+
+
     private
     def create_board(move, mark)
       @board_map.each_pair do |cell_number, coordinate|
@@ -119,6 +121,8 @@ module TicTacToe
     def set_cell(row, column, mark)
       board[row][column]= mark
     end
+
+
 
   end
 end

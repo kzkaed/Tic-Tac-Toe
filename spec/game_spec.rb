@@ -80,6 +80,7 @@ describe TicTacToe::Game do
     column = 2
     expect(game.get_cell(row,column)).to eq("x")
 
+    expect(game.diagonal_descent?).to eq(true)
     expect(game.diagonal?).to eq(true)
 
   end
@@ -101,6 +102,7 @@ describe TicTacToe::Game do
     column = 2
     expect(game.get_cell(row,column)).to eq("x")
 
+    expect(game.diagonal_ascent?).to eq(true)
     expect(game.diagonal?).to eq(true)
 
   end
