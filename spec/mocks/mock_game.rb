@@ -1,5 +1,5 @@
 class MockGame
-attr_accessor :board, :boards, :move
+attr_accessor :board, :boards, :move, :results
 
   def initialize
     @place_move_called = false
@@ -8,7 +8,7 @@ attr_accessor :board, :boards, :move
     @winner_called = false
     @play_again_called = false
     @clear_called = false
-    @result_called = false
+    @compile_result_called = false
 
     @board = [
         ["1", "2", "3"],
@@ -17,6 +17,8 @@ attr_accessor :board, :boards, :move
     ]
     @boards = []
     @move
+    @results = []
+
   end
 
   def place_move(move, mark)
@@ -34,8 +36,11 @@ attr_accessor :board, :boards, :move
     @draw_called = true
   end
 
-  def result
-    @result_called = true
+  def compile_result(player1, player2)
+    @player1 = player1
+    @player2 = player2
+    @compile_result_called = true
+    return @results.pop
   end
 
   def end?
@@ -72,8 +77,8 @@ attr_accessor :board, :boards, :move
     return @clear_called
   end
 
-  def result_called?
-    return @result_called
+  def compile_result_called?
+    return @compile_result_called
   end
 
 end

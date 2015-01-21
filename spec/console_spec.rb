@@ -15,23 +15,7 @@ describe TicTacToe::Console do
     $stdin = STDIN
   end
 
-  it 'puts a message to the console' do
-    console.output('a message')
-    expect($stdout.string).to match('a message')
-    expect{console.output('output')}.to output("output\n").to_stdout
-  end
-
-  it 'gets message from user via console' do
-    $stdin.string = 'message'
-    expect(console.input).to match('message')
-  end
-
-  it 'puts a board string to console via out' do
-    board_string = "\n - | - | - \n - | - | - \n - | - | -"
-    expect {console.output(board_string)}.to output("\n - | - | - \n - | - | - \n - | - | -\n").to_stdout
-  end
-
- it 'puts a board with numbered cells via game board' do
+  it 'puts a board with numbered cells via game board' do
     game = TicTacToe::Game.new
     board = game.board
     expect{console.display_board(board)}.to output("\n 1 | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9\n").to_stdout
@@ -66,8 +50,11 @@ describe TicTacToe::Console do
   end
 
   it 'displays results' do
-    result = "\n"
-    result_string = "win?#{result["winner"]} draw?#{result["draw"]}\n"
+    result = {'winner' => true,
+              'draw' => false,
+              'mark' => 'x',
+              'player' => 'player 1'}
+    result_string = "winner: true\ndraw: false\nmark: x\nplayer: player 1\n"
     expect{console.display_game_result(result)}.to output(result_string).to_stdout
   end
 

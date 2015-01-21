@@ -17,18 +17,14 @@ module TicTacToe
       cell_number = input
     end
 
-    def output(value)
-      puts value
-    end
-
-    def input
-      gets.chomp
-    end
 
     def display_game_result(result)
-      result_string = "win?#{result["winner"]} draw?#{result["draw"]}"
-      #do some stuff on result
-      output(result_string)
+      #requires that we know what we are getting-- on client receive a JSON/XML object you know you
+      #have to parse it to get out the data, so how is this different? in this case
+      #the client(userinteface) is the console and it understands its going to get a serialized object,
+      #in this case a hash which it needs to parse to use id and values-- no different. But we
+      #definately want to 'parse' object or data structure.
+      result.each { |key, value| output("#{key}: #{value}") }
     end
 
     def play_again?
@@ -51,6 +47,14 @@ module TicTacToe
         cell_numbers.gsub!(/#{cell.to_s}/, collect[cell-1])
       end
       cell_numbers
+    end
+
+    def output(value)
+      puts value
+    end
+
+    def input
+      gets.chomp
     end
 
   end

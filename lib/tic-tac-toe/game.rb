@@ -1,7 +1,7 @@
 module TicTacToe
 
   class Game
-    attr_accessor :board, :board_map
+    attr_accessor :board, :board_map, :winner_mark
 
     def initialize
       @board = [
@@ -22,9 +22,9 @@ module TicTacToe
       }
 
       @boards = []
+      @winner_mark =""
 
     end
-
 
     def place_move(move, mark)
       current_board = create_board(move, mark)
@@ -32,18 +32,12 @@ module TicTacToe
       return @boards.pop
     end
 
-    def get_cell(row, column)
-      board[row][column]
-    end
-
     def end?
       winner? || draw?
     end
 
     def winner?
-      return diagonal?
-      return across?
-      return down?
+      diagonal? || across? || down?
     end
 
     def draw?
@@ -52,7 +46,7 @@ module TicTacToe
     end
 
     def diagonal?
-      return diagonal_ascent? || diagonal_descent?
+      diagonal_ascent? || diagonal_descent?
     end
 
     def down?
@@ -61,11 +55,13 @@ module TicTacToe
         (0..2).each_with_index do |row|
           down << get_cell(row, column)
         end
-        return true if down.uniq.length == 1
+        if down.uniq.length == 1
+          set_winning_mark(down)
+          return true
+        end
       end
-      false
+      return false
     end
-
 
     def across?
       (0..2).each_with_index do |row|
@@ -73,10 +69,13 @@ module TicTacToe
         (0..2).each_with_index do |column|
           across << get_cell(row, column)
         end
-        return true if across.uniq.length == 1
-
+        if across.uniq.length == 1
+          set_winning_mark(across)
+          return true
+        end
       end
-      false
+
+      return false
     end
 
     def clear
@@ -87,26 +86,31 @@ module TicTacToe
       ]
     end
 
-    def result
-      {'winner' => winner?, 'draw' => draw?}
+    def compile_result(mark1, mark2)
+      player = set_winning_player(mark1, mark2)
+      {'winner' => winner?,
+       'draw' => draw?,
+       'mark' => winner_mark,
+       'player' => player}
     end
 
-    def diagonal_descent?
-      diagonal = []
-      (0..2).each_with_index do |index|
-        diagonal << get_cell(index, index)
+
+    def set_winning_mark(win_type)
+      @winner_mark = win_type.uniq[0]
+    end
+
+    def set_winning_player(mark1, mark2)
+      if @winner_mark == mark1 #player info don't like this
+        player = "player 1" #player1.name
+      elsif @winning_mark == mark2
+        player = "player 2" #player2.name
       end
-      return diagonal.uniq.length == 1
+      player
     end
 
-    def diagonal_ascent?
-      diagonal = []
-      (0..2).each_with_index do |index|
-        diagonal << get_cell(index, 2 - index)
-      end
-      return diagonal.uniq.length == 1
+    def get_cell(row, column)
+      board[row][column]
     end
-
 
     private
     def create_board(move, mark)
@@ -122,6 +126,29 @@ module TicTacToe
       board[row][column]= mark
     end
 
+    def diagonal_descent?
+      diagonal = []
+      (0..2).each_with_index do |index|
+        diagonal << get_cell(index, index)
+      end
+      if diagonal.uniq.length == 1
+        set_winning_mark(diagonal)
+        return true
+      end
+      return false
+    end
+
+    def diagonal_ascent?
+      diagonal = []
+      (0..2).each_with_index do |index|
+        diagonal << get_cell(index, 2 - index)
+      end
+      if diagonal.uniq.length == 1
+        set_winning_mark(diagonal)
+        return true
+      end
+      return false
+    end
 
 
   end

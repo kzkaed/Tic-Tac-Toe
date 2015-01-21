@@ -80,7 +80,6 @@ describe TicTacToe::Game do
     column = 2
     expect(game.get_cell(row,column)).to eq("x")
 
-    expect(game.diagonal_descent?).to eq(true)
     expect(game.diagonal?).to eq(true)
 
   end
@@ -102,7 +101,6 @@ describe TicTacToe::Game do
     column = 2
     expect(game.get_cell(row,column)).to eq("x")
 
-    expect(game.diagonal_ascent?).to eq(true)
     expect(game.diagonal?).to eq(true)
 
   end
@@ -195,6 +193,8 @@ describe TicTacToe::Game do
     expect(game.clear).to eq(board)
   end
 
+
+
   it 'has a board mapping that maps cell number to coordinates of board' do
     expect(game.board_map).to eq({
                                      "1" => [0,0],
@@ -207,6 +207,44 @@ describe TicTacToe::Game do
                                      "8" => [2,1],
                                      "9" => [2,2]
                                  })
+  end
+
+  it 'sets a winner mark' do
+    win_type = ["x","x","x"]#across
+    expect(game.set_winning_mark(win_type)).to eq("x")
+  end
+  it 'sets a winner mark' do
+    win_type = ["o","o","o"]#across
+    expect(game.set_winning_mark(win_type)).to eq("o")
+  end
+  it 'has a winner mark and is set' do
+    expect(game.winner_mark).to eq('')
+    game.set_winning_mark(["x","x","x"])
+    expect(game.winner_mark).to eq("x")
+  end
+
+  it 'sets a winning player' do
+    game.winner_mark = 'x'
+    player1 = 'x'
+    player2 = 'o'
+    player = 'player 1'
+
+    expect(game.set_winning_player(player1,player2)).to eq(player)
+  end
+
+  it 'compiles a result for user_interface' do
+    mark1 = 'x'
+    mark2 = 'o'
+    game.winner_mark = 'x'
+    allow(game).to receive(:winner?).and_return(true)
+    allow(game).to receive(:draw?).and_return(false)
+    result = {'winner' => true,
+              'draw' => false,
+              'mark' => 'x',
+              'player' => 'player 1'}
+
+
+    expect(game.compile_result(mark1, mark2)).to eq(result)
   end
 
   #stubs
@@ -222,10 +260,5 @@ describe TicTacToe::Game do
     expect(game.end?).to eq true
   end
 
-  it 'puts together a result ' do
-    allow(game).to receive(:winner?).and_return(true)
-    allow(game).to receive(:draw?).and_return(false)
-    expect(game.result).to eq({'winner' => true, 'draw' => false})
-  end
 
 end

@@ -29,7 +29,8 @@ module TicTacToe
         @game.board = current_board
       end
 
-      @user_interface.display_game_result(@game.result)
+      result = @game.compile_result(@player1.mark, @player2.mark)
+      @user_interface.display_game_result(result)
 
       run_again if @user_interface.play_again?
     end
