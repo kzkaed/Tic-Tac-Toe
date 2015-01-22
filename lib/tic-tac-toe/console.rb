@@ -17,7 +17,9 @@ module TicTacToe
     end
 
     def display_board(board)
-      output(create_board_output(board))
+      board_string = create_board_output(board)
+      new_board_string = add_color(board_string)
+      output(new_board_string)
     end
 
     def receive_cell_number
@@ -28,25 +30,26 @@ module TicTacToe
 
 
     def display_game_result(mark1,mark2,game)
-      #requires that we know what we are getting-- on client receive a JSON/XML object you know you
-      #have to parse it to get out the data, so how is this different? in this case
-      #the client(userinteface) is the console and it understands its going to get a serialized object,
-      #in this case a hash which it needs to parse to use id and values-- no different. But we
-      #definately want to 'parse' object or data structure.
-
       result = compile_result(mark1,mark2,game)
-      result.each { |key, value| output("#{key}: #{value}") }
+      result.each_value { |value| output("#{value}") }
     end
 
 
     def compile_result(mark1, mark2, game)
 
       player = set_winning_player(mark1, mark2, game.winner_mark)
+      result = {}
+      if game.winner?
+        result[:winner] = "A Win!"
+        result[:player] = "#{player} is the winner"
+        #result[:win_mark] = game.winner_mark
+      end
+      if game.draw?
+        result[:draw] = "Cat's Game!"
+      end
+      result
 
-      {'winner' => game.winner?,
-       'draw' => game.draw?,
-       'mark' => game.winner_mark,
-       'player' => player}
+
     end
 
 
@@ -56,13 +59,21 @@ module TicTacToe
     end
 
     def play_again?
-      output("play again? Y for yes, else no")
+      output("\nPlay again? Y for yes, else no")
       response = input
       return response == 'Y'
     end
 
 
+
     private
+
+    def add_color(board_string)
+      board_string.gsub!(/x/,@ascii_color.black_on_cyan("x"))
+      board_string.gsub!(/o/,@ascii_color.white_on_red("o"))
+      return board_string
+    end
+
     def create_board_output(board)
       cell_numbers = "\n 1 | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9"
       collect = ""

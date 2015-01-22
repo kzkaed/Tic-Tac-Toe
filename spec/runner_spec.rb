@@ -123,4 +123,12 @@ describe TicTacToe::Runner do
     expect(user_interface.play_again_called?).to eq(true)
   end
 
+  it 'only displays prepare if 1st time in game' do
+    runner.run_again
+    expect(runner.first_time_run).to eq(false)
+
+  end
+
+
+
 end

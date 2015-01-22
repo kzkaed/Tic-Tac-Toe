@@ -5,16 +5,19 @@ module TicTacToe
 
   class Runner
     attr_reader :game, :user_interface, :player1, :player2
+    attr_accessor :first_time_run
 
     def initialize(game, user_interface, player1, player2)
       @game = game
       @user_interface = user_interface
       @player1 = player1
       @player2 = player2
+      @first_time_run = true
     end
 
     def run
-      @user_interface.prepare
+
+      @user_interface.prepare if first_time_run
       @user_interface.display_board(@game.board)
 
       until (@game.end?)
@@ -37,8 +40,11 @@ module TicTacToe
 
     def run_again
       @game.clear
+      @first_time_run = false
       run
     end
+
+
 
   end
 

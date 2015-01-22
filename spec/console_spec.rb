@@ -31,21 +31,21 @@ describe TicTacToe::Console do
         ["4", "5", "6"],
         ["7", "8", "9"]
     ]
-    expect{console.display_board(board)}.to output("\n x | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9\n").to_stdout
+    expect{console.display_board(board)}.to output("\n \e[30;46mx\e[0m | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9\n").to_stdout
 
     board2 = [
         ["x", "o", "3"],
         ["4", "5", "6"],
         ["7", "8", "9"]
     ]
-    expect{console.display_board(board2)}.to output("\n x | o | 3 \n 4 | 5 | 6 \n 7 | 8 | 9\n").to_stdout
+    expect{console.display_board(board2)}.to output("\n \e[30;46mx\e[0m | \e[37;41mo\e[0m | 3 \n 4 | 5 | 6 \n 7 | 8 | 9\n").to_stdout
 
     board_final = [
         ["x", "o", "o"],
         ["x", "x", "6"],
         ["x", "8", "o"]
     ]
-    expect{console.display_board(board_final)}.to output("\n x | o | o \n x | x | 6 \n x | 8 | o\n").to_stdout
+    expect{console.display_board(board_final)}.to output("\n \e[30;46mx\e[0m | \e[37;41mo\e[0m | \e[37;41mo\e[0m \n \e[30;46mx\e[0m | \e[30;46mx\e[0m | 6 \n \e[30;46mx\e[0m | 8 | \e[37;41mo\e[0m\n").to_stdout
   end
 
   it 'prompts the player and receives input' do
@@ -64,7 +64,7 @@ describe TicTacToe::Console do
     allow(game).to receive(:draw?).and_return(false)
     allow(game).to receive(:winner_mark).and_return('x')
 
-    result_string = "winner: true\ndraw: false\nmark: x\nplayer: player 1\n"
+    result_string = "A Win!\nplayer 1 is the winner\n"
     expect{console.display_game_result("x","o",game)}.to output(result_string).to_stdout
   end
 
@@ -80,10 +80,6 @@ describe TicTacToe::Console do
     player = 'player 1'
 
     expect(console.set_winning_player(player1, player2,winner_mark)).to eq(player)
-  end
-
-  it 'prints characters on board with different colors' do
-    
   end
 
 

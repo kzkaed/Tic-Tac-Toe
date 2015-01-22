@@ -19,6 +19,14 @@ module TicTacToe
     def white_on_black(text); color(text, "\033[37;40m"); end
     def red_on_yellow(text); color(text,"\033[31;43m"); end
     def blue_on_green(text); color(text,"\033[34;42m"); end
+    def white_on_red(text); color(text,"\033[37;41m"); end
+    def black_on_cyan(text); color(text, "\033[30;46m"); end
+    def yellow_on_blue(text); color(text,"\033[33;44m"); end
+    def cyan_on_blue(text); color(text,"\033[36;44m"); end
+    def yellow_on_red(text); color(text,"\033[33;41m"); end
+    def blue_on_cyan(text); color(text,"\033[34;46m"); end
+    def red_on_magenta(text); color(text,"\033[31;45m"); end
+
 
 
   end
