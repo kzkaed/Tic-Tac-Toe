@@ -11,7 +11,6 @@ module TicTacToe
       @user_interface = user_interface
       @player1 = player1
       @player2 = player2
-      
     end
 
     def run

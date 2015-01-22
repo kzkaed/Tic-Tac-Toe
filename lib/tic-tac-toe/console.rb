@@ -1,10 +1,14 @@
+require_relative '../tic-tac-toe/color_string'
 module TicTacToe
   class Console
 
+    attr_accessor :ascii_color
     CELL_NUMBER_PROMPT = "Enter a cell number: "
 
     def initialize
-      @cell_number_prompt = CELL_NUMBER_PROMPT
+      @ascii_color = TicTacToe::ColorString.new
+
+      @cell_number_prompt = @ascii_color.blue_on_green(CELL_NUMBER_PROMPT)
     end
 
     def display_board(board)
