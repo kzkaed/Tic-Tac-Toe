@@ -15,6 +15,10 @@ describe TicTacToe::Console do
     $stdin = STDIN
   end
 
+  it 'displays welcome message' do
+    expect{console.prepare}.to output("\e[31mWelcome to Tic Tac Toe\e[0m\n").to_stdout
+  end
+
   it 'puts a board with numbered cells via game board' do
     game = TicTacToe::Game.new
     board = game.board
@@ -76,6 +80,10 @@ describe TicTacToe::Console do
     player = 'player 1'
 
     expect(console.set_winning_player(player1, player2,winner_mark)).to eq(player)
+  end
+
+  it 'prints characters on board with different colors' do
+    
   end
 
 

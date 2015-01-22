@@ -14,6 +14,7 @@ module TicTacToe
     end
 
     def run
+      @user_interface.prepare
       @user_interface.display_board(@game.board)
 
       until (@game.end?)

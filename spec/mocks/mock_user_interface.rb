@@ -6,6 +6,7 @@ class MockUserInterface
     @receive_cell_number_called = false
     @display_game_result_called = false
     @play_again_called = false
+    @prepare_called = false
 
     @play_again = []
     @board
@@ -13,6 +14,10 @@ class MockUserInterface
     @content_holder = []
     @moves = []
     @results = []
+  end
+
+  def prepare
+    @prepare_called = true
   end
 
   def display_board(board)
@@ -50,5 +55,9 @@ class MockUserInterface
 
   def play_again_called?
     return @play_again_called
+  end
+
+  def prepare_called?
+    return @prepare_called
   end
 end

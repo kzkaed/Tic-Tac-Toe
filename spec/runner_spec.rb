@@ -26,6 +26,11 @@ describe TicTacToe::Runner do
     expect(runner.player2).to eq(player2)
   end
 
+  it 'user interface displays game introduction' do
+    runner.run
+    expect(user_interface.prepare).to eq(true)
+  end
+
   it 'user interface displays board' do
     runner.run
     expect(user_interface.display_board_called?).to eq(true)

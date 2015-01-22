@@ -4,11 +4,16 @@ module TicTacToe
 
     attr_accessor :ascii_color
     CELL_NUMBER_PROMPT = "Enter a cell number: "
+    WELCOME = "Welcome to Tic Tac Toe"
 
     def initialize
       @ascii_color = TicTacToe::ColorString.new
+      @cell_number_prompt = @ascii_color.blue(CELL_NUMBER_PROMPT)
+      @welcome = @ascii_color.red(WELCOME)
+    end
 
-      @cell_number_prompt = @ascii_color.blue_on_green(CELL_NUMBER_PROMPT)
+    def prepare
+      output(@welcome)
     end
 
     def display_board(board)
