@@ -11,6 +11,7 @@ module TicTacToe
       @user_interface = user_interface
       @player1 = player1
       @player2 = player2
+      
     end
 
     def run
@@ -29,8 +30,7 @@ module TicTacToe
         @game.board = current_board
       end
 
-      result = @game.compile_result(@player1.mark, @player2.mark)
-      @user_interface.display_game_result(result)
+      @user_interface.display_game_result(@player1.mark, @player2.mark, @game)
 
       run_again if @user_interface.play_again?
     end

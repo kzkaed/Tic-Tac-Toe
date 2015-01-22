@@ -25,8 +25,7 @@ class MockUserInterface
     @moves.pop
   end
 
-  def display_game_result(result)
-    @results << result
+  def display_game_result(player1,player2,game)
     @display_game_result_called = true
   end
 

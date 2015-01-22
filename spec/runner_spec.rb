@@ -93,32 +93,8 @@ describe TicTacToe::Runner do
     expect(player2.get_move_called?).to eq(true)
   end
 
-  it 'has game compile results' do
-
-    result = {'winner' => true,
-              'draw' => false,
-              'mark' => 'x',
-              'player' => 'player 1'}
-
-    mark1= 'x'
-    mark2='o'
+  it 'user interface displays results' do
     runner.run
-    game.results << {'winner' => true,
-                     'draw' => false,
-                     'mark' => 'x',
-                     'player' => 'player 1'}
-    expect(game.compile_result(mark1,mark2)).to eq(result)
-    expect(game.compile_result_called?).to eq(true)
-
-  end
-
-  it 'sends result to user interface' do
-    game.results << {'winner' => true,
-                     'draw' => false,
-                     'mark' => 'x',
-                     'player' => 'player 1'}
-    runner.run
-    #expect(game.compile_result_called?).to eq(true)
     expect(user_interface.display_game_result_called?).to eq(true)
   end
 

@@ -18,13 +18,32 @@ module TicTacToe
     end
 
 
-    def display_game_result(result)
+    def display_game_result(mark1,mark2,game)
       #requires that we know what we are getting-- on client receive a JSON/XML object you know you
       #have to parse it to get out the data, so how is this different? in this case
       #the client(userinteface) is the console and it understands its going to get a serialized object,
       #in this case a hash which it needs to parse to use id and values-- no different. But we
       #definately want to 'parse' object or data structure.
+
+      result = compile_result(mark1,mark2,game)
       result.each { |key, value| output("#{key}: #{value}") }
+    end
+
+
+    def compile_result(mark1, mark2, game)
+
+      player = set_winning_player(mark1, mark2, game.winner_mark)
+
+      {'winner' => game.winner?,
+       'draw' => game.draw?,
+       'mark' => game.winner_mark,
+       'player' => player}
+    end
+
+
+    def set_winning_player(mark1, mark2, winner_mark)
+      return 'player 1' if winner_mark == mark1
+      return 'player 2' if winner_mark == mark2
     end
 
     def play_again?

@@ -54,13 +54,28 @@ describe TicTacToe::Console do
               'draw' => false,
               'mark' => 'x',
               'player' => 'player 1'}
+
+    game = TicTacToe::Game.new
+    allow(game).to receive(:winner?).and_return(true)
+    allow(game).to receive(:draw?).and_return(false)
+    allow(game).to receive(:winner_mark).and_return('x')
+
     result_string = "winner: true\ndraw: false\nmark: x\nplayer: player 1\n"
-    expect{console.display_game_result(result)}.to output(result_string).to_stdout
+    expect{console.display_game_result("x","o",game)}.to output(result_string).to_stdout
   end
 
   it 'plays again prompt and input' do
     $stdin.string = "Y"
     expect(console.play_again?).to eq(true)
+  end
+
+  it 'sets a winning player' do
+    winner_mark = 'x'
+    player1 = 'x'
+    player2 = 'o'
+    player = 'player 1'
+
+    expect(console.set_winning_player(player1, player2,winner_mark)).to eq(player)
   end
 
 

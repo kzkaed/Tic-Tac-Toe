@@ -8,7 +8,6 @@ attr_accessor :board, :boards, :move, :results
     @winner_called = false
     @play_again_called = false
     @clear_called = false
-    @compile_result_called = false
 
     @board = [
         ["1", "2", "3"],
@@ -36,12 +35,6 @@ attr_accessor :board, :boards, :move, :results
     @draw_called = true
   end
 
-  def compile_result(player1, player2)
-    @player1 = player1
-    @player2 = player2
-    @compile_result_called = true
-    return @results.pop
-  end
 
   def end?
     @end_called = true
@@ -69,16 +62,9 @@ attr_accessor :board, :boards, :move, :results
     return @draw_called
   end
 
-  def play_again_called?
-    return @play_again_called
-  end
-
   def clear_called?
     return @clear_called
   end
 
-  def compile_result_called?
-    return @compile_result_called
-  end
 
 end

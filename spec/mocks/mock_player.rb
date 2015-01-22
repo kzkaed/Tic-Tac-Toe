@@ -1,5 +1,5 @@
 class MockPlayer
-  attr_accessor :moves, :player_number, :boards, :current_board, :mark
+  attr_accessor :moves, :player_number, :boards, :current_board, :marks, :mark
   def initialize(player_number)
     @player_number = player_number
     @get_move_called = false
@@ -9,7 +9,8 @@ class MockPlayer
     @moves = []
     @boards = []
     @current_board = []
-    @mark = []
+    @marks = []
+    @mark = ""
   end
 
 
@@ -19,8 +20,11 @@ class MockPlayer
   end
 
   def player_mark
+    @mark = 'x' if player_number == 1
+    @mark = 'o' if player_number == 2
+
     @player_mark_called = true
-    return @mark.pop
+    return @marks.pop
   end
 
 

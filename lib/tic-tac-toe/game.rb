@@ -78,6 +78,10 @@ module TicTacToe
       return false
     end
 
+    def set_winning_mark(win_type)
+      @winner_mark = win_type.uniq[0]
+    end
+
     def clear
       @board = [
           ["1", "2", "3"],
@@ -86,27 +90,7 @@ module TicTacToe
       ]
     end
 
-    def compile_result(mark1, mark2)
-      player = set_winning_player(mark1, mark2)
-      {'winner' => winner?,
-       'draw' => draw?,
-       'mark' => winner_mark,
-       'player' => player}
-    end
 
-
-    def set_winning_mark(win_type)
-      @winner_mark = win_type.uniq[0]
-    end
-
-    def set_winning_player(mark1, mark2)
-      if @winner_mark == mark1 #player info don't like this
-        player = "player 1" #player1.name
-      elsif @winning_mark == mark2
-        player = "player 2" #player2.name
-      end
-      player
-    end
 
     def get_cell(row, column)
       board[row][column]
