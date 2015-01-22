@@ -6,6 +6,7 @@ describe TicTacToe::Console do
 
   let(:console) {described_class.new}
 
+
   before do
     $stdout = StringIO.new
     $stdin = StringIO.new
@@ -24,6 +25,7 @@ describe TicTacToe::Console do
     board = game.board
     expect{console.display_board(board)}.to output("\n 1 | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9\n").to_stdout
   end
+
 
   it 'displays a formatted board' do
     board = [
@@ -73,14 +75,7 @@ describe TicTacToe::Console do
     expect(console.play_again?).to eq(true)
   end
 
-  it 'sets a winning player' do
-    winner_mark = 'x'
-    player1 = 'x'
-    player2 = 'o'
-    player = 'Player 1'
 
-    expect(console.set_winning_player(player1, player2,winner_mark)).to eq(player)
-  end
 
   it 'prompts to play again and receives input Y' do
     $stdin.string = 'Y'

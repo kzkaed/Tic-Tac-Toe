@@ -1,14 +1,16 @@
 require_relative '../tic-tac-toe/color_string'
+require_relative '../tic-tac-toe/presenter'
 module TicTacToe
   class Console
 
-    attr_accessor :ascii_color
+    attr_accessor :ascii_color, :presenter
     CELL_NUMBER_PROMPT = "Enter a cell number: "
     WELCOME = "Welcome to Tic Tac Toe"
 
     def initialize
       @ascii_color = TicTacToe::ColorString.new
-      @cell_number_prompt = @ascii_color.blue(CELL_NUMBER_PROMPT)
+      @presenter = TicTacToe::Presenter.new(@ascii_color)
+      @cell_number_prompt = CELL_NUMBER_PROMPT
       @welcome = @ascii_color.red(WELCOME)
     end
 
@@ -30,44 +32,12 @@ module TicTacToe
 
 
     def display_game_result(mark1,mark2,game)
-      result = compile_result(mark1,mark2,game)
+      result = @presenter.compile_result(mark1,mark2,game)
       result.each_value { |value| output("#{value}") }
     end
 
 
-    def compile_result(mark1, mark2, game)
 
-      player = set_winning_player(mark1, mark2, game.winner_mark)
-      mark_color_string = set_mark_color(mark1,mark2, game.winner_mark)
-      result = {}
-      if game.winner?
-        result[:winner] = "A Win!"
-        result[:player] = "#{player} is the winner with #{mark_color_string}"
-        #result[:win_mark] = game.winner_mark
-      end
-      if game.draw?
-        result[:draw] = "Cat's Game!"
-      end
-      result
-
-
-    end
-
-    def set_mark_color (mark1, mark2, winner_mark)
-      if winner_mark == mark1
-        mark_color_string = @ascii_color.black_on_cyan(winner_mark)
-      elsif winner_mark == mark2
-        mark_color_string = @ascii_color.white_on_red(winner_mark)
-      end
-      mark_color_string
-    end
-
-
-
-    def set_winning_player(mark1, mark2, winner_mark)
-      return 'Player 1' if winner_mark == mark1
-      return 'Player 2' if winner_mark == mark2
-    end
 
     def play_again?
       output("\nPlay again? Y for yes, else no")
@@ -106,6 +76,7 @@ module TicTacToe
     def input
       gets.chomp
     end
+
 
   end
 end
