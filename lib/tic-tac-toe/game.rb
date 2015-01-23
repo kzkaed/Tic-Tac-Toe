@@ -46,9 +46,14 @@ module TicTacToe
       return remaining_values == 2 && !winner?
     end
 
+    def score
+
+    end
+
     def diagonal?
       diagonal_ascent? || diagonal_descent?
     end
+
 
     def down?
       (0..2).each_with_index do |column|

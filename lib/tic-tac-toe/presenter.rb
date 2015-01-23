@@ -16,8 +16,6 @@ module TicTacToe
         sound_win
         result[:winner] = color_string.blue_bright_blink("A Win!")
         result[:player] = "#{color_string.magenta_bright(player)} is the winner with #{mark_color_string}"
-        #result[:win_mark] = game.winner_mark
-
       end
       if game.draw?
         sound_draw

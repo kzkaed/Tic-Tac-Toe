@@ -238,5 +238,8 @@ describe TicTacToe::Game do
     expect(game.end?).to eq true
   end
 
-
+  it 'has a score' do
+   # allow(game).to receive(:winner?).and return(true)
+    expect(game.score).to eq(10)
+  end
 end
