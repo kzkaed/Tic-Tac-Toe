@@ -23,6 +23,7 @@ module TicTacToe
 
       @boards = []
       @winner_mark =""
+      @winner_marks = []
 
     end
 

@@ -13,17 +13,18 @@ module TicTacToe
 
       result = {}
       if game.winner?
+        `say 'yeah'`
         result[:winner] = "A Win!"
         result[:player] = "#{player} is the winner with #{mark_color_string}"
         #result[:win_mark] = game.winner_mark
       end
       if game.draw?
-        result[:draw] = "Cat's Game!"
+        `say 'meow'`
+        result[:draw] = "MEOW, Cat's Game!"
       end
       result
-
-
     end
+
 
 
 

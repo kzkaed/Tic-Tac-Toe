@@ -10,6 +10,7 @@ module TicTacToe
     def initialize
       @ascii_color = TicTacToe::ColorString.new
       @presenter = TicTacToe::Presenter.new(@ascii_color)
+
       @cell_number_prompt = CELL_NUMBER_PROMPT
       @welcome = @ascii_color.red(WELCOME)
     end
@@ -35,9 +36,6 @@ module TicTacToe
       result = @presenter.compile_result(mark1,mark2,game)
       result.each_value { |value| output("#{value}") }
     end
-
-
-
 
     def play_again?
       output("\nPlay again? Y for yes, else no")
