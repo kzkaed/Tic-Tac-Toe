@@ -13,20 +13,18 @@ module TicTacToe
 
       result = {}
       if game.winner?
-        `say 'yee haw, a win.'`
-        result[:winner] = "A Win!"
-        result[:player] = "#{player} is the winner with #{mark_color_string}"
+        sound_win
+        result[:winner] = color_string.blue_bright_blink("A Win!")
+        result[:player] = "#{color_string.magenta_bright(player)} is the winner with #{mark_color_string}"
         #result[:win_mark] = game.winner_mark
+
       end
       if game.draw?
-        `say 'meow, cat's game`
-        result[:draw] = "MEOW, Cat's Game!"
+        sound_draw
+        result[:draw] = "#{color_string.blue_bright_blink("MEOW")}, Cat's Game!"
       end
       result
     end
-
-
-
 
     private
 
@@ -39,11 +37,17 @@ module TicTacToe
       mark_color_string
     end
 
-
-
     def set_winning_player(mark1, mark2, winner_mark)
       return 'Player 1' if winner_mark == mark1
       return 'Player 2' if winner_mark == mark2
+    end
+
+    def sound_draw
+      `say 'meow, cat's game`
+    end
+
+    def sound_win
+      `say 'bee's knees, a win`
     end
 
   end

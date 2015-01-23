@@ -17,7 +17,7 @@ describe TicTacToe::Console do
   end
 
   it 'displays welcome message' do
-    expect{console.prepare}.to output("\e[31mWelcome to Tic Tac Toe\e[0m\n").to_stdout
+    expect{console.prepare}.to output("\e[1;35mWelcome to Tic Tac Toe\e[0m\n").to_stdout
   end
 
   it 'puts a board with numbered cells via game board' do
@@ -66,7 +66,7 @@ describe TicTacToe::Console do
     allow(game).to receive(:draw?).and_return(false)
     allow(game).to receive(:winner_mark).and_return('x')
 
-    result_string = "A Win!\nPlayer 1 is the winner with \e[30;46mx\e[0m\n"
+    result_string = "\e[1;5;34mA Win!\e[0m\n\e[1;35mPlayer 1\e[0m is the winner with \e[30;46mx\e[0m\n"
     expect{console.display_game_result("x","o",game)}.to output(result_string).to_stdout
   end
 

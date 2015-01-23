@@ -3,16 +3,16 @@ require_relative '../tic-tac-toe/presenter'
 module TicTacToe
   class Console
 
-    attr_accessor :ascii_color, :presenter
+    attr_accessor :ansi_color, :presenter
     CELL_NUMBER_PROMPT = "Enter a cell number: "
     WELCOME = "Welcome to Tic Tac Toe"
 
     def initialize
-      @ascii_color = TicTacToe::ColorString.new
-      @presenter = TicTacToe::Presenter.new(@ascii_color)
+      @ansi_color = TicTacToe::ColorString.new
+      @presenter = TicTacToe::Presenter.new(@ansi_color)
 
       @cell_number_prompt = CELL_NUMBER_PROMPT
-      @welcome = @ascii_color.red(WELCOME)
+      @welcome = @ansi_color.magenta_bright(WELCOME)
     end
 
     def prepare
@@ -48,8 +48,8 @@ module TicTacToe
     private
 
     def add_color(board_string)
-      board_string.gsub!(/x/,@ascii_color.black_on_cyan("x"))
-      board_string.gsub!(/o/,@ascii_color.white_on_red("o"))
+      board_string.gsub!(/x/,@ansi_color.black_on_cyan("x"))
+      board_string.gsub!(/o/,@ansi_color.white_on_red("o"))
       return board_string
     end
 
