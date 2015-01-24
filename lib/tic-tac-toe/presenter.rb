@@ -9,7 +9,7 @@ module TicTacToe
     def compile_result(mark1, mark2, game)
 
       player = set_winning_player(mark1, mark2, game.winner_mark)
-      mark_color_string = set_mark_color(mark1,mark2, game.winner_mark)
+      mark_color_string = set_mark_color(mark1, mark2, game.winner_mark)
 
       result = {}
       if game.winner?

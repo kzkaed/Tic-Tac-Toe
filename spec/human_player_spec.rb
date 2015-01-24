@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'tic-tac-toe/human_player'
+require 'tic-tac-toe/game'
 
 
 describe TicTacToe::HumanPlayer do
@@ -22,16 +23,18 @@ describe TicTacToe::HumanPlayer do
   end
 
   it'gets player1 move from user_interface' do
+    game = TicTacToe::Game.new
    move = "1"
    user_interface.moves << move
-  expect(player1.determine_move).to eq(move)
+  expect(player1.determine_move(game)).to eq(move)
     expect(user_interface.receive_cell_number_called?).to eq(true)
   end
 
   it'gets player2 from user_interface' do
+    game = TicTacToe::Game.new
     move = "2"
     user_interface.moves << move
-    expect(player2.determine_move).to eq(move)
+    expect(player2.determine_move(game)).to eq(move)
     expect(user_interface.receive_cell_number_called?).to eq(true)
   end
 

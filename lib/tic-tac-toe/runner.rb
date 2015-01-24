@@ -21,14 +21,14 @@ module TicTacToe
       @user_interface.display_board(@game.board)
 
       until (@game.end?)
-        current_move = @player1.determine_move
-        current_board = @game.create_boards(current_move, @player1.mark)
+        current_move = @player1.determine_move(@game)
+        current_board = @game.process_turn(current_move, @player1.mark)
         @user_interface.display_board(current_board)
         @game.board = current_board
         break if @game.end?
 
-        current_move = @player2.determine_move
-        current_board = @game.create_boards(current_move, @player2.mark)
+        current_move = @player2.determine_move(@game)
+        current_board = @game.process_turn(current_move, @player2.mark)
         @user_interface.display_board(current_board)
         @game.board = current_board
       end
@@ -43,7 +43,6 @@ module TicTacToe
       @first_time_run = false
       run
     end
-
 
 
   end
