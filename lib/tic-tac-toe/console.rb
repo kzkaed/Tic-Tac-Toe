@@ -32,9 +32,10 @@ module TicTacToe
     end
 
 
-    def display_game_result(mark1,mark2,game)
-      result = @presenter.compile_result(mark1,mark2,game)
+    def display_game_result(mark1, mark2, game)
+      result = @presenter.compile_result(mark1, mark2, game)
       result.each_value { |value| output("#{value}") }
+      output(game.score)
     end
 
     def play_again?
@@ -44,12 +45,11 @@ module TicTacToe
     end
 
 
-
     private
 
     def add_color(board_string)
-      board_string.gsub!(/x/,@ansi_color.black_on_cyan("x"))
-      board_string.gsub!(/o/,@ansi_color.white_on_red("o"))
+      board_string.gsub!(/x/, @ansi_color.black_on_cyan("x"))
+      board_string.gsub!(/o/, @ansi_color.white_on_red("o"))
       return board_string
     end
 
