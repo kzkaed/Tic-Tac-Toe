@@ -1,12 +1,12 @@
 module TicTacToe
-  class Computer
+  class AI_Minimax
 
     def initialize
 
     end
 
 
-    def best_move(game, depth=0, best_score=[])
+    def get_best_move(game, depth=0, best_score=[])
       return 0 if game.draw?
       return -1
     end
