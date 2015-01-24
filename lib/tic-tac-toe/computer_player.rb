@@ -7,7 +7,7 @@ module TicTacToe
       @player_number = player_number
       @mark = player_mark
 
-      @alfred = computer_ai
+      @computer_ai = computer_ai
     end
 
     def player_mark
@@ -18,8 +18,7 @@ module TicTacToe
 
     def determine_move(game)
 
-      move = @alfred.get_best_move(game)
-      p "move in cp", move
+      move = @computer_ai.get_best_move(game)
       move.chomp
     end
 
