@@ -9,15 +9,13 @@ module TicTacToe
     def compile_result(mark1, mark2, game)
 
       player = set_winning_player(mark1, mark2, game.winner_mark)
-      mark_color_string = set_mark_color(mark1,mark2, game.winner_mark)
+      mark_color_string = set_mark_color(mark1, mark2, game.winner_mark)
 
       result = {}
       if game.winner?
         sound_win
         result[:winner] = color_string.blue_bright_blink("A Win!")
         result[:player] = "#{color_string.magenta_bright(player)} is the winner with #{mark_color_string}"
-        #result[:win_mark] = game.winner_mark
-
       end
       if game.draw?
         sound_draw

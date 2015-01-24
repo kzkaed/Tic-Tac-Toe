@@ -20,7 +20,7 @@ attr_accessor :board, :boards, :move, :results
 
   end
 
-  def place_move(move, mark)
+  def process_turn(move, mark)
     @move = move
     @mark = mark
     @place_move_called = true

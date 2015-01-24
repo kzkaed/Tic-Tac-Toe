@@ -12,7 +12,7 @@ describe TicTacToe::Game do
                               ["7", "8", "9"]])
   end
 
-  it 'places move' do
+  it 'creates boards' do
     move = 1.to_s
     board =[
         ["x", "2", "3"],
@@ -21,11 +21,26 @@ describe TicTacToe::Game do
     ]
     player_mark = "x"
 
+    expect(game.process_turn(move,player_mark)).to eq(board)
 
-    expect(game.place_move(move,player_mark)).to eq(board)
   end
 
-  it 'places move 2' do
+  it 'creates boards' do
+    move = 1.to_s
+    board =[
+        ["x", "2", "3"],
+        ["4", "5", "6"],
+        ["7", "8", "9"]
+    ]
+    player_mark = "x"
+
+   game.process_turn(move,player_mark)
+    expect(game.boards).to eq([board])
+    expect(game.moves).to eq(["1"])
+
+  end
+
+  it 'creates boards for both players' do
     current_board = [
         ["x", "2", "3"],
         ["4", "5", "6"],
@@ -42,7 +57,7 @@ describe TicTacToe::Game do
     player_mark = "o"
 
 
-    expect(game.place_move(move, player_mark)).to eq(next_board)
+    expect(game.process_turn(move, player_mark)).to eq(next_board)
   end
 
 
@@ -184,13 +199,24 @@ describe TicTacToe::Game do
     expect(game.winner?).to eq(true)
   end
 
-  it 'clears board' do
-    board = [
+  it 'clears board and current turns moves' do
+    game.board = [["x", "o", "3"],
+                  ["4", "5", "6"],
+                  ["7", "8", "9"]]
+    game.moves = ["1","2"]
+
+    final_board = [
         ["1", "2", "3"],
         ["4", "5", "6"],
         ["7", "8", "9"]
     ]
-    expect(game.clear).to eq(board)
+    expect(game.board).to eq([["x", "o", "3"],
+                              ["4", "5", "6"],
+                              ["7", "8", "9"]])
+    expect(game.moves).to eq(["1","2"])
+    game.clear
+    expect(game.board).to eq(final_board)
+    expect(game.moves).to eq([])
   end
 
 
@@ -238,5 +264,22 @@ describe TicTacToe::Game do
     expect(game.end?).to eq true
   end
 
+  it 'has a score' do
+    allow(game).to receive(:winner?).and_return(true)
+    allow(game).to receive(:winner_mark).and_return('x')
 
+    expect(game.score).to eq(-10)
+  end
+  it 'has a score' do
+    allow(game).to receive(:draw?).and_return(true)
+
+    expect(game.score).to eq(0)
+  end
+
+  it 'has a score' do
+    allow(game).to receive(:winner?).and_return(true)
+    allow(game).to receive(:winner_mark).and_return('o')
+
+    expect(game.score).to eq(10)
+  end
 end

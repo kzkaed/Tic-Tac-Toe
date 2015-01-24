@@ -1,7 +1,7 @@
 module TicTacToe
 
   class Game
-    attr_accessor :board, :board_map, :winner_mark
+    attr_accessor :board, :board_map, :winner_mark, :scores, :moves, :boards
 
     def initialize
       @board = [
@@ -24,14 +24,19 @@ module TicTacToe
       @boards = []
       @winner_mark =""
       @winner_marks = []
+      @scores= []
+      @moves = []
+
 
     end
 
-    def place_move(move, mark)
+    def process_turn(move, mark)
       current_board = create_board(move, mark)
-      @boards << current_board
-      return @boards.pop
+      collect_moves(move)
+      collect_boards(current_board)
+      return current_board
     end
+
 
     def end?
       winner? || draw?
@@ -46,9 +51,20 @@ module TicTacToe
       return remaining_values == 2 && !winner?
     end
 
+    def score
+      if winner? && winner_mark == 'o' #max
+        return 10
+      elsif winner? && winner_mark == 'x' #min
+        return -10
+      else
+        return 0
+      end
+    end
+
     def diagonal?
       diagonal_ascent? || diagonal_descent?
     end
+
 
     def down?
       (0..2).each_with_index do |column|
@@ -84,13 +100,11 @@ module TicTacToe
     end
 
     def clear
-      @board = [
-          ["1", "2", "3"],
-          ["4", "5", "6"],
-          ["7", "8", "9"]
-      ]
+      @moves = []
+      @board = [["1", "2", "3"],
+                ["4", "5", "6"],
+                ["7", "8", "9"]]
     end
-
 
 
     def get_cell(row, column)
@@ -105,6 +119,15 @@ module TicTacToe
         end
       end
       board
+    end
+
+
+    def collect_moves(move)
+      @moves<< move
+    end
+
+    def collect_boards(current_board)
+      @boards << current_board
     end
 
     def set_cell(row, column, mark)
