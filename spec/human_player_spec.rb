@@ -24,14 +24,14 @@ describe TicTacToe::HumanPlayer do
   it'gets player1 move from user_interface' do
    move = "1"
    user_interface.moves << move
-  expect(player1.get_move).to eq(move)
+  expect(player1.determine_move).to eq(move)
     expect(user_interface.receive_cell_number_called?).to eq(true)
   end
 
   it'gets player2 from user_interface' do
     move = "2"
     user_interface.moves << move
-    expect(player2.get_move).to eq(move)
+    expect(player2.determine_move).to eq(move)
     expect(user_interface.receive_cell_number_called?).to eq(true)
   end
 

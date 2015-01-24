@@ -41,8 +41,17 @@ describe TicTacToe::Runner do
       move = "1"
       player1.moves << move
       runner.run
-      expect(player1.get_move).to eq("1")
+      expect(player1.determine_move).to eq("1")
       expect(player1.get_move_called?).to eq(true)
+
+  end
+
+  it "player2 gets move from ai" do
+    move = "2"
+    player2.moves << move
+    runner.run
+    expect(player2.determine_move).to eq("2")
+    expect(player2.get_move_called?).to eq(true)
 
   end
 
@@ -61,7 +70,7 @@ describe TicTacToe::Runner do
         ["7", "8", "9"]
     ]
     runner.run
-    expect(game.place_move(move,mark)).to eq(current_board)
+    expect(game.create_boards(move,mark)).to eq(current_board)
     expect(game.place_move_called?).to eq(true)
 
   end
@@ -94,7 +103,7 @@ describe TicTacToe::Runner do
     move = "1"
     player2.moves << move
     runner.run
-    expect(player2.get_move).to eq("1")
+    expect(player2.determine_move).to eq("1")
     expect(player2.get_move_called?).to eq(true)
   end
 

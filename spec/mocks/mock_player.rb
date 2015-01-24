@@ -14,7 +14,7 @@ class MockPlayer
   end
 
 
-  def get_move
+  def determine_move
     @get_move_called = true
     return @moves.pop
   end

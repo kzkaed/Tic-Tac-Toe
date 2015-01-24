@@ -1,7 +1,7 @@
 module TicTacToe
 
   class Game
-    attr_accessor :board, :board_map, :winner_mark
+    attr_accessor :board, :board_map, :winner_mark, :scores
 
     def initialize
       @board = [
@@ -24,10 +24,11 @@ module TicTacToe
       @boards = []
       @winner_mark =""
       @winner_marks = []
+      @scores= []
 
     end
 
-    def place_move(move, mark)
+    def create_boards(move, mark)
       current_board = create_board(move, mark)
       @boards << current_board
       return @boards.pop
@@ -47,7 +48,13 @@ module TicTacToe
     end
 
     def score
-
+      if winner? && winner_mark == 'o'#max
+        return 10
+      elsif winner? && winner_mark == 'x' #min
+        return -10
+      else
+        return 0
+      end
     end
 
     def diagonal?

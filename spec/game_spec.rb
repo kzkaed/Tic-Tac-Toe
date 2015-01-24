@@ -22,7 +22,7 @@ describe TicTacToe::Game do
     player_mark = "x"
 
 
-    expect(game.place_move(move,player_mark)).to eq(board)
+    expect(game.create_boards(move,player_mark)).to eq(board)
   end
 
   it 'places move 2' do
@@ -42,7 +42,7 @@ describe TicTacToe::Game do
     player_mark = "o"
 
 
-    expect(game.place_move(move, player_mark)).to eq(next_board)
+    expect(game.create_boards(move, player_mark)).to eq(next_board)
   end
 
 
@@ -239,7 +239,21 @@ describe TicTacToe::Game do
   end
 
   it 'has a score' do
-   # allow(game).to receive(:winner?).and return(true)
+    allow(game).to receive(:winner?).and_return(true)
+    allow(game).to receive(:winner_mark).and_return('x')
+
+    expect(game.score).to eq(-10)
+  end
+  it 'has a score' do
+    allow(game).to receive(:draw?).and_return(true)
+
+    expect(game.score).to eq(0)
+  end
+
+  it 'has a score' do
+    allow(game).to receive(:winner?).and_return(true)
+    allow(game).to receive(:winner_mark).and_return('o')
+
     expect(game.score).to eq(10)
   end
 end

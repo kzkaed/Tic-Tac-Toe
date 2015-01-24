@@ -1,13 +1,15 @@
+
 module TicTacToe
   class ComputerPlayer
 
     attr_accessor :player_number, :mark, :moves, :move
 
-    def initialize(player_number)
+    def initialize(player_number, computer_ai)
       @player_number = player_number
       @mark = player_mark
       @moves = []
       @move = move
+      @alfred = computer_ai
     end
 
     def player_mark
@@ -16,8 +18,9 @@ module TicTacToe
     end
 
 
-    def get_move
-      move = #return a cell_number
+    def determine_move
+      move = @alfred.get_best_move
+      move.chomp
     end
 
 
