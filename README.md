@@ -20,7 +20,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To run Human to Human game:
+
+    $ ruby bin/run.rb H
+
+To run Human to Computer game:
+
+    $ ruby bin/run.rb
 
 ## Contributing
 
