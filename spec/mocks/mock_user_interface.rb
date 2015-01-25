@@ -25,7 +25,7 @@ class MockUserInterface
     @display_board_called = true
   end
 
-  def receive_cell_number
+  def receive_cell_number(game)
     @receive_cell_number_called = true
     @moves.pop
   end

@@ -8,7 +8,5 @@ describe 'TicTacToe::AI_Minimax' do
 
   end
 
-  it 'implements minimax' do
-s
-  end
+
 end

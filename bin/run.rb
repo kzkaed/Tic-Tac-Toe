@@ -6,6 +6,7 @@ require 'tic-tac-toe/game'
 require 'tic-tac-toe/runner'
 require 'tic-tac-toe/computer_player'
 require 'tic-tac-toe/ai_alfred'
+require 'tic-tac-toe/ai_minimax'
 
 game = TicTacToe::Game.new
 user_interface = TicTacToe::Console.new

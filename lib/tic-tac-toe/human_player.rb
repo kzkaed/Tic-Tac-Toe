@@ -20,7 +20,7 @@ module TicTacToe
 
 
     def determine_move(game)
-      move = @user_interface.receive_cell_number
+      move = @user_interface.receive_cell_number(game)
       move.chomp
     end
   end

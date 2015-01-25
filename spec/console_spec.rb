@@ -52,7 +52,8 @@ describe TicTacToe::Console do
 
   it 'prompts the player and receives input' do
     $stdin.string = 1.to_s
-    expect(console.receive_cell_number).to eq(1.to_s)
+    game = TicTacToe::Game.new
+    expect(console.receive_cell_number(game)).to eq(1.to_s)
   end
 
   it 'displays results' do
@@ -76,8 +77,6 @@ describe TicTacToe::Console do
     expect(console.play_again?).to eq(true)
   end
 
-
-
   it 'prompts to play again and receives input Y' do
     $stdin.string = 'Y'
     expect(console.play_again?).to eq(true)
@@ -92,5 +91,6 @@ describe TicTacToe::Console do
     $stdin.string = ' '
     expect(console.play_again?).to eq(false)
   end
+
 
 end
