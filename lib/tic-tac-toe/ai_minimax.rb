@@ -40,9 +40,9 @@ module TicTacToe
 
         possible_moves = get_possible(game.moves)
         possible_moves.each do |move|
-          new_board_state = game.create_board(move,'o')#makes new board state in game, saves it (and return it)
+          new_board_state = game.create_board(move,player)#makes new board state in game, saves it (and return it)
           p new_board_state
-          scores[move] = -1 #recursive_call, so if it goes all the way to game.winner? return -1 or 0
+          scores[move] = -1 #recursive_call(game,depth+1,next_player(player))#-1 #recursive_call, so if it goes all the way to game.winner? return -1 or 0
           p scores
           game.clear_at(move)#return board to state
 
