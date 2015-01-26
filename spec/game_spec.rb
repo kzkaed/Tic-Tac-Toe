@@ -268,19 +268,19 @@ describe TicTacToe::Game do
     allow(game).to receive(:winner?).and_return(true)
     allow(game).to receive(:winner_mark).and_return('x')
 
-    expect(game.score).to eq(-10)
+    expect(game.score).to eq([10,0])
   end
   it 'has a score' do
     allow(game).to receive(:draw?).and_return(true)
 
-    expect(game.score).to eq(0)
+    expect(game.score).to eq([0,0])
   end
 
   it 'has a score' do
     allow(game).to receive(:winner?).and_return(true)
     allow(game).to receive(:winner_mark).and_return('o')
 
-    expect(game.score).to eq(10)
+    expect(game.score).to eq([0,10])
   end
 
   it 'clear at cell' do

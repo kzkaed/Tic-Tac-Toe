@@ -26,12 +26,14 @@ module TicTacToe
       @winner_marks = []
       @scores= []
       @moves = []
+      @totals_o = 0
+      @totals_x = 0
+
 
 
     end
 
     def process_turn(move, mark)
-      p "in process turn"
       current_board = create_board(move, mark)
       collect_moves(move)
       collect_boards(current_board)
@@ -52,14 +54,17 @@ module TicTacToe
       return remaining_values == 2 && !winner?
     end
 
-    def score
-      if winner? && winner_mark == 'o' #max
-        return 10
+    def score#could be in presenter
+      if winner? && winner_mark == 'o'
+        @totals_o = @totals_o + 10
       elsif winner? && winner_mark == 'x' #min
-        return -10
+        @totals_x = @totals_x + 10
       else
-        return 0
+        @totals_x = @totals_x + 0
+        @totals_o = @totals_o + 0
       end
+
+      return [@totals_x,@totals_o]
     end
 
     def diagonal?
