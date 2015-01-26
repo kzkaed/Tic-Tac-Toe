@@ -12,4 +12,10 @@ let(:ai_minimax) { described_class.new }
   end
 
 
+  it 'gets possible cells for move' do
+
+    game.moves
+    expect(ai_minimax.get_possible(moves)).to eq('')
+  end
+
 end
