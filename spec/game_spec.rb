@@ -282,4 +282,42 @@ describe TicTacToe::Game do
 
     expect(game.score).to eq(10)
   end
+
+  it 'clear at cell' do
+    cell = "1"
+    game.board = [["x", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]]
+
+    expect(game.clear_at(cell)).to eq(cell)
+    expect(game.board).to eq( [["1", "2", "3"],
+                               ["4", "5", "6"],
+                               ["7", "8", "9"]])
+
+  end
+
+  it 'set at cell' do
+    cell = "1"
+    mark = 'x'
+
+    expect(game.board).to eq( [["1", "2", "3"],
+                               ["4", "5", "6"],
+                               ["7", "8", "9"]])
+
+    expect(game.set_at(cell,mark)).to eq(nil)
+    expect(game.board).to eq( [["x", "2", "3"],
+                               ["4", "5", "6"],
+                               ["7", "8", "9"]])
+  end
+
+  it 'get at cell' do
+    cell = "1"
+    game.board = [["x", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]]
+
+    expect(game.get_at('1')).to eq('x')
+    expect(game.board).to eq( [["x", "2", "3"],
+                               ["4", "5", "6"],
+                               ["7", "8", "9"]])
+
+  end
+
+
 end

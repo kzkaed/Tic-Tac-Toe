@@ -31,6 +31,7 @@ module TicTacToe
     end
 
     def process_turn(move, mark)
+      p "in process turn"
       current_board = create_board(move, mark)
       collect_moves(move)
       collect_boards(current_board)
@@ -106,20 +107,41 @@ module TicTacToe
                 ["7", "8", "9"]]
     end
 
+    #******These get to board directly, could be used from AI only
+
+    def clear_at(cell)
+      coordinate = @board_map.fetch(cell)
+      set_cell(coordinate[0],coordinate[1],cell)
+    end
+
+    def set_at(cell,mark)
+      coordinate = @board_map.fetch(cell)
+      set_cell(coordinate[0],coordinate[1],mark)
+      nil
+    end
+
+    def get_at(cell)
+      coordinate = @board_map.fetch(cell)
+      get_cell(coordinate[0],coordinate[1])
+    end
 
     def get_cell(row, column)
       board[row][column]
     end
 
-    private
+    def set_cell(row, column, mark)
+      board[row][column]= mark
+    end
+
+
     def create_board(move, mark)
-      @board_map.each_pair do |cell_number, coordinate|
-        if move == cell_number
-          set_cell(coordinate[0], coordinate[1], mark)
-        end
-      end
+      set_at(move, mark)
       board
     end
+    private
+
+
+
 
 
     def collect_moves(move)
@@ -130,9 +152,6 @@ module TicTacToe
       @boards << current_board
     end
 
-    def set_cell(row, column, mark)
-      board[row][column]= mark
-    end
 
     def diagonal_descent?
       diagonal = []
@@ -158,6 +177,17 @@ module TicTacToe
       return false
     end
 
+    def deprecated_create_board(move, mark)#remove
+      @board_map.each_pair do |cell_number, coordinate|
+        if move == cell_number
+          set_cell(coordinate[0], coordinate[1], mark)
+        end
+      end
+      board
+    end
+
 
   end
 end
+
+

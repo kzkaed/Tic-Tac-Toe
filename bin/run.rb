@@ -10,7 +10,8 @@ require 'tic-tac-toe/ai_minimax'
 
 game = TicTacToe::Game.new
 user_interface = TicTacToe::Console.new
-computer_ai = TicTacToe::AI_Alfred.new
+dumb_ai = TicTacToe::AI_Alfred.new
+smart_ai = TicTacToe::AI_Minimax.new
 player1 = nil
 player2 = nil
 
@@ -18,9 +19,16 @@ if ARGV[0] == 'H'
   ARGV.clear
   player1 = TicTacToe::HumanPlayer.new(1,user_interface)
   player2 = TicTacToe::HumanPlayer.new(2,user_interface)
+  puts "Human to human game running with #{user_interface.class} user interface component"
+elsif ARGV[0] == 'S'
+  ARGV.clear
+  player1 = TicTacToe::HumanPlayer.new(1,user_interface)
+player2 = TicTacToe::ComputerPlayer.new(2, smart_ai)
+  puts "Human to computer game running with #{smart_ai.class} AI component"
 else
   player1 = TicTacToe::HumanPlayer.new(1,user_interface)
-player2 = TicTacToe::ComputerPlayer.new(2, computer_ai)
+  player2 = TicTacToe::ComputerPlayer.new(2, dumb_ai)
+  puts "Human to computer game running with #{dumb_ai.class} AI component"
 end
 
 TicTacToe::Runner.new(game, user_interface, player1, player2).run
