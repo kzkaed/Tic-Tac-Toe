@@ -30,14 +30,12 @@ module TicTacToe
       output(@cell_number_prompt)
       cell_number = input
       validate(cell_number, game)
-
     end
 
     #TODO add result for presenter.score
     def display_game_result(mark1, mark2, game)
       result = @presenter.compile_result(mark1, mark2, game)
       result.each_value { |value| output("#{value}") }
-
     end
 
     def play_again?
@@ -48,7 +46,6 @@ module TicTacToe
 
 
     private
-
     def add_color(board_string)
       board_string.gsub!(/x/, @ansi_color.black_on_cyan("x"))
       board_string.gsub!(/o/, @ansi_color.white_on_red("o"))

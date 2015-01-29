@@ -29,11 +29,6 @@ module TicTacToe
       result
     end
 
-    def echo
-      "echo 'hi'"
-    end
-
-    #TODO handle score here @return to compile_result
     def score_result(game)
       win_mark = get_win_mark(game.board)
       if game.winner? && win_mark == 'x'
@@ -47,7 +42,6 @@ module TicTacToe
 
       return [@totals_x,@totals_o]
     end
-
 
     def get_win_mark(board)
       x_count = 0
@@ -65,7 +59,6 @@ module TicTacToe
     end
 
     private
-
     def set_mark_color (mark1, mark2, winner_mark)
       if winner_mark == mark1
         mark_color_string = color_string.black_on_cyan(winner_mark)

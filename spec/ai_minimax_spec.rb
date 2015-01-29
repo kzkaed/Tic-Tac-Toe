@@ -28,17 +28,29 @@ describe TicTacToe::AI_Minimax do
     expect(ai_minimax.value(game,0)).to eq(-1)
   end
 
-  context 'returns move or score based on max score'
-  it 'sort out last best move from selection of scores' do
-    scores = {"1" => 1, "2" => 1, "7" => 1, "8" => 1}
-    expect(ai_minimax.max_sort_move(scores)).to eq("8")
+  context 'returns move or score based on sort' do
+    it 'sort out last best move from selection of scores' do
+      scores = {"1" => 1, "2" => 1, "7" => 1, "8" => 1}
+      expect(ai_minimax.max_move_sort(scores)).to eq("8")
+    end
+
+    it 'sorts a max score via sorted scores' do
+      scores = {"1" => -1, "5" => 0, "6" => 1, "7" => -1, "8" => 1}
+      expect(ai_minimax.max_score_sort(scores)).to eq(1)
+    end
   end
 
-  it 'sorts a max score via sorted scores' do
-    scores = {"1" => -1, "2" => 1, "3" => -1, "4" => 1, "5" => 0, "6" => 1, "7" => -1, "8" => 1}
-    expect(ai_minimax.max_sort_score(scores)).to eq(1)
-  end
+  context 'return move or score based on max by' do
+    it 'max by best move from scores' do
+      scores = {"1" => -5, "2" => 1, "7" => 0, "8" => 0}
+      expect(ai_minimax.max_by_move(scores)).to eq("8")
+    end
 
+    it 'max by score from scores' do
+      scores = {"1" => -1, "2" => 1, "7" => -1, "8" => 1}
+      expect(ai_minimax.max_by_score(scores)).to eq(1)
+    end
+  end
 
 
   describe 'moves from end of game' do
@@ -125,7 +137,16 @@ describe TicTacToe::AI_Minimax do
       expect(ai_minimax.natalie(game, depth=0, 'o', scores={})).to eq("3")#game.end? with win
     end
 
+    #depth 1 is always
     #isolate this test
+    it 'depth = 1 return 3 with 2 options x turn' do
+      game.board = [["1", "2", "3"],
+                    ["4", "o", "6"],
+                    ["o", "x", "x"]]#even with total plays 9 total plays/depth
+
+      expect(ai_minimax.natalie(game, depth=0, 'o', scores={})).to eq("3")#game.end? with win
+    end
+
     it 'return 3 with 2 options o turn' do
       game.board = [["1", "2", "3"],
                     ["4", "o", "6"],
@@ -133,6 +154,12 @@ describe TicTacToe::AI_Minimax do
 
       expect(ai_minimax.natalie(game, depth=0, 'o', scores={})).to eq("3")#game.end? with win
     end
+
+
+    it 'tests negamax' do
+
+    end
+
 
 
 
