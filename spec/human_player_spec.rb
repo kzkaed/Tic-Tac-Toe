@@ -4,11 +4,9 @@ require 'tic-tac-toe/game'
 
 
 describe TicTacToe::HumanPlayer do
-  let(:user_interface){MockUserInterface.new}
-  let(:player1) { described_class.new(1,user_interface) }
-  let(:player2) { described_class.new(2,user_interface) }
-
-
+  let(:user_interface) { MockUserInterface.new }
+  let(:player1) { described_class.new(1, user_interface) }
+  let(:player2) { described_class.new(2, user_interface) }
 
 
   it 'establishes player mark for player1' do
@@ -22,15 +20,15 @@ describe TicTacToe::HumanPlayer do
     expect(player2.mark).to eq('o')
   end
 
-  it'gets player1 move from user_interface' do
+  it 'gets player1 move from user_interface' do
     game = TicTacToe::Game.new
-   move = "1"
-   user_interface.moves << move
-  expect(player1.determine_move(game)).to eq(move)
+    move = "1"
+    user_interface.moves << move
+    expect(player1.determine_move(game)).to eq(move)
     expect(user_interface.receive_cell_number_called?).to eq(true)
   end
 
-  it'gets player2 from user_interface' do
+  it 'gets player2 from user_interface' do
     game = TicTacToe::Game.new
     move = "2"
     user_interface.moves << move

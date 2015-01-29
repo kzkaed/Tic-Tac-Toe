@@ -1,7 +1,7 @@
 module TicTacToe
 
   class Game
-    attr_accessor :board, :board_map, :winner_mark, :scores, :moves, :boards
+    attr_accessor :board, :board_map, :moves, :boards
 
     def initialize
       @board = [
@@ -9,6 +9,7 @@ module TicTacToe
           ["4", "5", "6"],
           ["7", "8", "9"]
       ]
+      #TODO: board map could directly hold x or o--future refactor?
       @board_map = {
           "1" => [0, 0],
           "2" => [0, 1],
@@ -22,14 +23,7 @@ module TicTacToe
       }
 
       @boards = []
-      @winner_mark =""
-      @winner_marks = []
-      @scores= []
       @moves = []
-      @totals_o = 0
-      @totals_x = 0
-
-
 
     end
 
@@ -40,6 +34,10 @@ module TicTacToe
       return current_board
     end
 
+    def available_moves
+      b = @board.flatten
+      b.reject {|cell| cell == 'x' || cell == 'o'}
+    end
 
     def end?
       winner? || draw?
@@ -54,23 +52,9 @@ module TicTacToe
       return remaining_values == 2 && !winner?
     end
 
-    def score#could be in presenter
-      if winner? && winner_mark == 'o'
-        @totals_o = @totals_o + 10
-      elsif winner? && winner_mark == 'x' #min
-        @totals_x = @totals_x + 10
-      else
-        @totals_x = @totals_x + 0
-        @totals_o = @totals_o + 0
-      end
-
-      return [@totals_x,@totals_o]
-    end
-
     def diagonal?
       diagonal_ascent? || diagonal_descent?
     end
-
 
     def down?
       (0..2).each_with_index do |column|
@@ -79,7 +63,6 @@ module TicTacToe
           down << get_cell(row, column)
         end
         if down.uniq.length == 1
-          set_winning_mark(down)
           return true
         end
       end
@@ -93,7 +76,6 @@ module TicTacToe
           across << get_cell(row, column)
         end
         if across.uniq.length == 1
-          set_winning_mark(across)
           return true
         end
       end
@@ -101,8 +83,23 @@ module TicTacToe
       return false
     end
 
-    def set_winning_mark(win_type)
-      @winner_mark = win_type.uniq[0]
+
+    def set_win_mark(board)
+      x_count = 0
+      o_count = 0
+      reduced = board.flatten.keep_if { |cell| cell == 'x' || cell == "o"}
+      reduced.each do |cell|
+        if cell == 'x'
+          x_count = x_count + 1
+        else
+          o_count = o_count + 1
+        end
+      end
+      if x_count > o_count
+        @winning_mark = 'x'
+      else
+        @winner_mark =  'o'
+      end
     end
 
     def clear
@@ -138,17 +135,12 @@ module TicTacToe
       board[row][column]= mark
     end
 
-
     def create_board(move, mark)
       set_at(move, mark)
       board
     end
+
     private
-
-
-
-
-
     def collect_moves(move)
       @moves<< move
     end
@@ -164,7 +156,6 @@ module TicTacToe
         diagonal << get_cell(index, index)
       end
       if diagonal.uniq.length == 1
-        set_winning_mark(diagonal)
         return true
       end
       return false
@@ -176,20 +167,11 @@ module TicTacToe
         diagonal << get_cell(index, 2 - index)
       end
       if diagonal.uniq.length == 1
-        set_winning_mark(diagonal)
         return true
       end
       return false
     end
 
-    def deprecated_create_board(move, mark)#remove
-      @board_map.each_pair do |cell_number, coordinate|
-        if move == cell_number
-          set_cell(coordinate[0], coordinate[1], mark)
-        end
-      end
-      board
-    end
 
 
   end

@@ -1,6 +1,7 @@
 class MockUserInterface
 
   attr_accessor :content_holder, :board, :moves, :results, :play_again
+
   def initialize
     @display_board_called = false
     @receive_cell_number_called = false
@@ -30,7 +31,10 @@ class MockUserInterface
     @moves.pop
   end
 
-  def display_game_result(player1,player2,game)
+  def display_game_result(player1, player2, game)
+    puts "display game result"
+    p game
+    puts game.winner?
     @display_game_result_called = true
   end
 

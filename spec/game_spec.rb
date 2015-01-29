@@ -21,8 +21,7 @@ describe TicTacToe::Game do
     ]
     player_mark = "x"
 
-    expect(game.process_turn(move,player_mark)).to eq(board)
-
+    expect(game.process_turn(move, player_mark)).to eq(board)
   end
 
   it 'creates boards' do
@@ -34,10 +33,9 @@ describe TicTacToe::Game do
     ]
     player_mark = "x"
 
-   game.process_turn(move,player_mark)
+    game.process_turn(move, player_mark)
     expect(game.boards).to eq([board])
     expect(game.moves).to eq(["1"])
-
   end
 
   it 'creates boards for both players' do
@@ -64,15 +62,15 @@ describe TicTacToe::Game do
   it 'gets a diagonal cells from board no match' do
     column = 0
     row = 0
-    expect(game.get_cell(row,column)).to eq("1")
+    expect(game.get_cell(row, column)).to eq("1")
 
     column = 1
     row = 1
-    expect(game.get_cell(row,column)).to eq("5")
+    expect(game.get_cell(row, column)).to eq("5")
 
     column = 2
     row = 2
-    expect(game.get_cell(row,column)).to eq("9")
+    expect(game.get_cell(row, column)).to eq("9")
 
     expect(game.diagonal?).to eq(false)
 
@@ -85,15 +83,15 @@ describe TicTacToe::Game do
 
     row = 0
     column = 0
-    expect(game.get_cell(row,column)).to eq("x")
+    expect(game.get_cell(row, column)).to eq("x")
 
     row = 1
     column = 1
-    expect(game.get_cell(row,column)).to eq("x")
+    expect(game.get_cell(row, column)).to eq("x")
 
     row = 2
     column = 2
-    expect(game.get_cell(row,column)).to eq("x")
+    expect(game.get_cell(row, column)).to eq("x")
 
     expect(game.diagonal?).to eq(true)
 
@@ -106,15 +104,15 @@ describe TicTacToe::Game do
 
     row = 2
     column = 0
-    expect(game.get_cell(row,column)).to eq("x")
+    expect(game.get_cell(row, column)).to eq("x")
 
     row = 1
     column = 1
-    expect(game.get_cell(row,column)).to eq("x")
+    expect(game.get_cell(row, column)).to eq("x")
 
     row = 0
     column = 2
-    expect(game.get_cell(row,column)).to eq("x")
+    expect(game.get_cell(row, column)).to eq("x")
 
     expect(game.diagonal?).to eq(true)
 
@@ -122,21 +120,21 @@ describe TicTacToe::Game do
 
 
   it 'gets a row of cells from board and match' do
-    game.board = [["x", "x", "x"],#row 0
-                  ["o", "o", "6"],#row 1
-                  ["7", "8", "9"]]#row 2
-              #col 0     1    2
+    game.board = [["x", "x", "x"], #row 0
+                  ["o", "o", "6"], #row 1
+                  ["7", "8", "9"]] #row 2
+                #col 0     1    2
     row = 0
     column = 0
-    expect(game.get_cell(row,column)).to eq("x")
+    expect(game.get_cell(row, column)).to eq("x")
 
     row = 0
     column = 1
-    expect(game.get_cell(row,column)).to eq("x")
+    expect(game.get_cell(row, column)).to eq("x")
 
     row = 0
     column = 2
-    expect(game.get_cell(row,column)).to eq("x")
+    expect(game.get_cell(row, column)).to eq("x")
 
     expect(game.across?).to eq(true)
   end
@@ -148,15 +146,15 @@ describe TicTacToe::Game do
                   ["x", "8", "9"]]
     row = 0
     column = 0
-    expect(game.get_cell(row,column)).to eq("x")
+    expect(game.get_cell(row, column)).to eq("x")
 
     row = 1
     column = 0
-    expect(game.get_cell(row,column)).to eq("x")
+    expect(game.get_cell(row, column)).to eq("x")
 
     row = 2
     column = 0
-    expect(game.get_cell(row,column)).to eq("x")
+    expect(game.get_cell(row, column)).to eq("x")
 
     expect(game.down?).to eq(true)
   end
@@ -203,7 +201,7 @@ describe TicTacToe::Game do
     game.board = [["x", "o", "3"],
                   ["4", "5", "6"],
                   ["7", "8", "9"]]
-    game.moves = ["1","2"]
+    game.moves = ["1", "2"]
 
     final_board = [
         ["1", "2", "3"],
@@ -213,45 +211,29 @@ describe TicTacToe::Game do
     expect(game.board).to eq([["x", "o", "3"],
                               ["4", "5", "6"],
                               ["7", "8", "9"]])
-    expect(game.moves).to eq(["1","2"])
+    expect(game.moves).to eq(["1", "2"])
     game.clear
     expect(game.board).to eq(final_board)
     expect(game.moves).to eq([])
   end
 
 
-
   it 'has a board mapping that maps cell number to coordinates of board' do
     expect(game.board_map).to eq({
-                                     "1" => [0,0],
-                                     "2" => [0,1],
-                                     "3" => [0,2],
-                                     "4" => [1,0],
-                                     "5" => [1,1],
-                                     "6" => [1,2],
-                                     "7" => [2,0],
-                                     "8" => [2,1],
-                                     "9" => [2,2]
+                                     "1" => [0, 0],
+                                     "2" => [0, 1],
+                                     "3" => [0, 2],
+                                     "4" => [1, 0],
+                                     "5" => [1, 1],
+                                     "6" => [1, 2],
+                                     "7" => [2, 0],
+                                     "8" => [2, 1],
+                                     "9" => [2, 2]
                                  })
   end
 
-  it 'sets a winner mark' do
-    win_type = ["x", "x", "x"] #across
-    expect(game.set_winning_mark(win_type)).to eq("x")
-  end
 
-  it 'sets a winner mark' do
-    win_type = ["o", "o", "o"] #across
-    expect(game.set_winning_mark(win_type)).to eq("o")
-  end
-
-  it 'has a winner mark and is set' do
-    expect(game.winner_mark).to eq('')
-    game.set_winning_mark(["x", "x", "x"])
-    expect(game.winner_mark).to eq("x")
-  end
-
-  #stubs
+#stubs
   it 'returns game end if winner? is true' do
     allow(game).to receive(:winner?).and_return(true)
     allow(game).to receive(:draw?).and_return(false)
@@ -264,48 +246,28 @@ describe TicTacToe::Game do
     expect(game.end?).to eq true
   end
 
-  it 'has a score' do
-    allow(game).to receive(:winner?).and_return(true)
-    allow(game).to receive(:winner_mark).and_return('x')
-
-    expect(game.score).to eq([10,0])
-  end
-  it 'has a score' do
-    allow(game).to receive(:draw?).and_return(true)
-
-    expect(game.score).to eq([0,0])
-  end
-
-  it 'has a score' do
-    allow(game).to receive(:winner?).and_return(true)
-    allow(game).to receive(:winner_mark).and_return('o')
-
-    expect(game.score).to eq([0,10])
-  end
-
   it 'clear at cell' do
     cell = "1"
     game.board = [["x", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]]
 
     expect(game.clear_at(cell)).to eq(cell)
-    expect(game.board).to eq( [["1", "2", "3"],
-                               ["4", "5", "6"],
-                               ["7", "8", "9"]])
-
+    expect(game.board).to eq([["1", "2", "3"],
+                              ["4", "5", "6"],
+                              ["7", "8", "9"]])
   end
 
   it 'set at cell' do
     cell = "1"
     mark = 'x'
 
-    expect(game.board).to eq( [["1", "2", "3"],
-                               ["4", "5", "6"],
-                               ["7", "8", "9"]])
+    expect(game.board).to eq([["1", "2", "3"],
+                              ["4", "5", "6"],
+                              ["7", "8", "9"]])
 
-    expect(game.set_at(cell,mark)).to eq(nil)
-    expect(game.board).to eq( [["x", "2", "3"],
-                               ["4", "5", "6"],
-                               ["7", "8", "9"]])
+    expect(game.set_at(cell, mark)).to eq(nil)
+    expect(game.board).to eq([["x", "2", "3"],
+                              ["4", "5", "6"],
+                              ["7", "8", "9"]])
   end
 
   it 'get at cell' do
@@ -313,10 +275,27 @@ describe TicTacToe::Game do
     game.board = [["x", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]]
 
     expect(game.get_at('1')).to eq('x')
-    expect(game.board).to eq( [["x", "2", "3"],
-                               ["4", "5", "6"],
-                               ["7", "8", "9"]])
+    expect(game.board).to eq([["x", "2", "3"],
+                              ["4", "5", "6"],
+                              ["7", "8", "9"]])
+  end
 
+  it 'get possible next moves' do
+    expect(game.available_moves).to eq(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
+  end
+
+  it 'get possible next moves if board has filled space' do
+    game.board = [["x", "2", "3"],
+                  ["4", "5", "6"],
+                  ["7", "8", "9"]]
+    expect(game.available_moves).to eq(["2", "3", "4", "5", "6", "7", "8", "9"])
+  end
+
+  it 'get possible next moves if board has filled space' do
+    game.board = [["x", "x", "3"],
+                  ["o", "o", "6"],
+                  ["7", "8", "9"]]
+    expect(game.available_moves).to eq(["3", "6", "7", "8", "9"])
   end
 
 

@@ -1,15 +1,19 @@
 module TicTacToe
   class Presenter
-    attr_accessor :color_string
+    attr_accessor :color_string, :totals_o, :totals_x
 
     def initialize(color_string)
       @color_string = color_string
+
+      @totals_o = 0
+      @totals_x = 0
     end
 
+    #TODO player1 or 2 on score add to @return result
     def compile_result(mark1, mark2, game)
-
-      player = set_winning_player(mark1, mark2, game.winner_mark)
-      mark_color_string = set_mark_color(mark1, mark2, game.winner_mark)
+      win_mark = get_win_mark(game.board)
+      player = set_winning_player(mark1, mark2, win_mark)
+      mark_color_string = set_mark_color(mark1, mark2, win_mark)
 
       result = {}
       if game.winner?
@@ -21,7 +25,43 @@ module TicTacToe
         sound_draw
         result[:draw] = "#{color_string.blue_bright_blink("MEOW")}, Cat's Game!"
       end
+
       result
+    end
+
+    def echo
+      "echo 'hi'"
+    end
+
+    #TODO handle score here @return to compile_result
+    def score_result(game)
+      win_mark = get_win_mark(game.board)
+      if game.winner? && win_mark == 'x'
+        @totals_x = @totals_x + 10
+      elsif game.winner? && win_mark == 'o'
+        @totals_o = @totals_o + 10
+      else
+        @totals_x = @totals_x + 0
+        @totals_o = @totals_o + 0
+      end
+
+      return [@totals_x,@totals_o]
+    end
+
+
+    def get_win_mark(board)
+      x_count = 0
+      o_count = 0
+      reduced = board.flatten.keep_if { |cell| cell == 'x' || cell == "o"}
+      reduced.each do |cell|
+        if cell == 'x'
+          x_count = x_count + 1
+        else
+          o_count = o_count + 1
+        end
+      end
+      return 'x' if x_count > o_count
+      return 'o'
     end
 
     private
@@ -40,10 +80,12 @@ module TicTacToe
       return 'Player 2' if winner_mark == mark2
     end
 
+    #TODO sound_draw test
     def sound_draw
       `say 'meow, cat's game`
     end
 
+    #TODO sound_win test
     def sound_win
       `say 'bee's knees, a win`
     end

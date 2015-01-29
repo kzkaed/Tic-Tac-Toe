@@ -1,134 +1,158 @@
 module TicTacToe
   class AI_Minimax
-      attr_accessor :current_game
+    attr_accessor :current_game
+
     def initialize
       @current_game = nil
+      @mark = ""
+      @next_mark = ""
+
+      @score
+      @best_move = ""
+
+
     end
 
 
     def get_best_move(game)
+      fake = game.clone
+      natalie(fake, depth=0, 'o', scores={})
+      return @best_move
+    end
 
-        move=''
+    def natalie(game, depth=0, mark, scores)
 
+      return value(game, depth) if game.end?
 
-        game_fake = game.clone#don't want to alter actual game.
-        p "minimax3 returns: ", minimax3(game_fake,depth=0,'o') #in the form of cell number (1-9)
+      game.available_moves.each do |move|
+        game.create_board(move, mark)
+        scores[move] = -(natalie(game, depth + 1, next_player(mark), {}))
+        game.clear_at(move)
 
+        @best_move = max_best_move(scores)
+        p "best_move: #{@best_move}"
+        @score = max_score(scores)
+        p "score: #{@score}"
+        p scores
+        #{"1"=>3, "2"=>0, "3"=>1, "4"=>3, "6"=>3} I want "3"=>1 if depth == 1 then return scores
+        if depth == 1
+          p "depth in" , depth
+          p "scores in" , scores
+        end
+      end
+      if depth == 0
+        return @best_move
+      elsif depth > 0
+        return @score
+      end
 
+    end
 
-
-      return minimax3(game_fake,depth=0,'o') #in the form of cell number (1-9)
+    def value(game, depth)
+      p "depth: #{depth}"
+      if game.draw?
+        return 0 #always evaluate to 0 *depth
+      else
+        return -1 * depth#use depth gives {"1"=>3, "2"=>0, "3"=>1, "4"=>3, "6"=>3}
+        #need that "3"=>1
+      end
 
     end
 
 
 
+    def max_select_score(scores)
+      max_number = scores.values.max
+      scores.select { |k, v| v == max_number }.keys
+    end
 
-      def recursive_call(game, depth=0, player)
-        minimax3(game,depth + 1, next_player(player))
+    def max_sort_move(scores)
+      scores.sort { |a, b| a[1] <=> b[1] }.last[0]
+    end
 
+    def max_sort_score(scores)
+      scores.sort { |a, b| a[1] <=> b[1] }.last[1]
+    end
+
+    def max_by_score(scores)
+      scores.max_by { |key, value| key }[1]
+      #max by is O(n)
+    end
+
+    def max_by_move(scores)
+      scores.max_by { |key, value| value }[0]
+    end
+
+    def max_score(scores)
+      #random selection of best maxes
+      max_sort_score(scores)
+      #max_by_score(scores)
+    end
+
+    def max_best_move(scores)
+      max_sort_move(scores)
+      #max_by_move(scores)
+    end
+
+    def negamax(game, depth, player) #o
+      if depth == 0
+        return player * -1
+      end
+      game.available_moves.each do |move|
+        game.create_board(move, player) #o
+        value = -negamax(game.child, depth - 1, next_player(player))
+        best_value = max(best_value, value)
       end
 
-
-      def minimax3(game, depth=0, player)#3 tries later, I like this
-        scores = {}
-        if game.draw?
-          return 0
-        elsif game.winner?
-          return -1 #from perspective of maxplayer or 'o' in this case, if x wins that NOT good assign LOWest value
-        end
-
-        possible_moves = get_possible(game.moves)
-        possible_moves.each do |move|
-          new_board_state = game.create_board(move,player)#makes new board state in game, saves it (and return it)
-          p new_board_state
-          scores[move] = -1 #recursive_call(game,depth+1,next_player(player))#-1 #recursive_call, so if it goes all the way to game.winner? return -1 or 0
-          p scores
-          game.clear_at(move)#return board to state
+      best_value
+    end
 
 
-        end
-        best_move = scores.max_by {|key, value| value }[0]# return key "2" , 1st element or move
-        p "best_move", best_move
-        score = scores.max_by { |key,value|value}[1]#return value, 2nd element or score max, so will return 0 over -1
-        p "score" , score
 
-
-        if depth == 0 #root node
-          p "best move returned ",best_move
-          return best_move #return move in form of "2"
-        elsif depth > 0 # depth is greater than 0 or child node
-          return score #return score
-        end
-
-      end
-
-
-      def negamax(game,depth,player)#o
-        if depth == 0
-          return player * -10
-        end
-        possible_moves = get_possible(game.moves)
-        possible_moves.each do |move|
-          game.create_board(move,player)#o
-          value = -negamax(game.child, depth - 1, next_player(player))
-          best_value = max(best_value,value )
-        end
-
-        best_value
-      end
-
-      def pseudo(game, depth, player)#pseudo(game,depth,player)
-        if depth == 0 # or game is a terminal game, it ends game.end?
-          return #heuristic value of node[game] value = score? or move value?
-        end
+    def pseudo(game, depth, player) #pseudo(game,depth,player)
+      if depth == 0 # or game is a terminal game, it ends game.end?
+        return  #heuristic value of node[game] value = score? -1,0,1
+      else
         if player == 'o'
-          best_value = -10
+          best_value = -1.0/0
           #for each child of game
-            value =   pseudo(game, depth - 1, next_player(player))
-            best_value = max(best_value,value)
+          value = pseudo(game, depth - 1, next_player(player))
+          best_value = max(best_value, value)
           return best_value
-        else#don't need this because this is human
-          best_value = 10
+        else #other player
+          best_value = 1.0/0
           #for each child of game
-            value = pseudo(game, depth - 1, next_player(player))
-            best_value = max(best_value,value)
-            return best_value
-          end
-
-      end
-
-
-
-
-      def reverse_mark(mark)
-        return 'o' if mark == 'x'
-        return 'x' if mark == 'o'
-      end
-
-      def next_player(player)
-        if player == "x"
-          next_player = 'o'
-        else
-          next_player = 'x'
+          value = pseudo(game, depth - 1, next_player(player))
+          best_value = max(best_value, value)
+          return best_value
         end
-        next_player
       end
 
+    end
 
-      def get_possible(moves)
-        possible_moves = %w(1 2 3 4 5 6 7 8 9)
-        moves.each do |move|
-          possible_moves.select! {|num| num != move }
-        end
-        possible_moves
+
+    def reverse_mark(mark)
+      return 'o' if mark == 'x'
+      return 'x' if mark == 'o'
+    end
+
+    def next_player(player)
+      if player == "x"
+        next_player = 'o'
+      else
+        next_player = 'x'
       end
+      next_player
+    end
 
-      def print_info(info)
-        puts info
-      end
+    def infinity(wish)
 
-
+      #(0.0).infinite?        #=> nil
+      #(-1.0/0.0).infinite?   #=> -1
+      #(+1.0/0.0).infinite?   #=> 1
+      neg_infinity = -1.0/0.0
+      INFINITY
+    end
 
 
   end

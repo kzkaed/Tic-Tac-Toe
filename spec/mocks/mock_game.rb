@@ -1,5 +1,5 @@
 class MockGame
-attr_accessor :board, :boards, :move, :results
+  attr_accessor :board, :boards, :move, :results
 
   def initialize
     @place_move_called = false
@@ -46,13 +46,13 @@ attr_accessor :board, :boards, :move, :results
 
 
 #    ******* Mock expectations *******
-    def place_move_called?
-      return @place_move_called
-    end
+  def place_move_called?
+    return @place_move_called
+  end
 
-    def end_called?
-      return @end_called
-    end
+  def end_called?
+    return @end_called
+  end
 
   def winner_called?
     return @winner_called

@@ -24,9 +24,13 @@ To run Human to Human game:
 
     $ ruby bin/run.rb H
 
-To run Human to Computer game:
+To run Human to Computer game with ai:
 
     $ ruby bin/run.rb
+
+To run Human to Computer game with ai(dumb):
+
+    $ ruby bin/run.rb D
 
 ## Contributing
 

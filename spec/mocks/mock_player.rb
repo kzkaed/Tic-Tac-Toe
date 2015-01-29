@@ -1,5 +1,6 @@
 class MockPlayer
   attr_accessor :moves, :player_number, :boards, :current_board, :marks, :mark, :game
+
   def initialize(player_number)
     @player_number = player_number
     @get_move_called = false
@@ -30,12 +31,11 @@ class MockPlayer
   end
 
 
-
 #    ******* Mock expectations *******
 
-   def get_move_called?
+  def get_move_called?
     return @get_move_called
-   end
+  end
 
   def player_mark_called?
     return @player_mark_called

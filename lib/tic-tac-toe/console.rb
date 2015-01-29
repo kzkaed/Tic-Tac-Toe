@@ -33,10 +33,11 @@ module TicTacToe
 
     end
 
+    #TODO add result for presenter.score
     def display_game_result(mark1, mark2, game)
       result = @presenter.compile_result(mark1, mark2, game)
       result.each_value { |value| output("#{value}") }
-      output(game.score)
+
     end
 
     def play_again?

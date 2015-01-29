@@ -38,11 +38,11 @@ describe TicTacToe::Runner do
 
 
   it "player1 get move from user interface" do
-      move = "1"
-      player1.moves << move
-      runner.run
-      expect(player1.determine_move(game)).to eq("1")
-      expect(player1.get_move_called?).to eq(true)
+    move = "1"
+    player1.moves << move
+    runner.run
+    expect(player1.determine_move(game)).to eq("1")
+    expect(player1.get_move_called?).to eq(true)
 
   end
 
@@ -70,7 +70,7 @@ describe TicTacToe::Runner do
         ["7", "8", "9"]
     ]
     runner.run
-    expect(game.process_turn(move,mark)).to eq(current_board)
+    expect(game.process_turn(move, mark)).to eq(current_board)
     expect(game.place_move_called?).to eq(true)
 
   end
@@ -137,7 +137,6 @@ describe TicTacToe::Runner do
     expect(runner.first_time_run).to eq(false)
 
   end
-
 
 
 end
