@@ -17,11 +17,9 @@ module TicTacToe
 
 
     def determine_move(game)
-
       move = @computer_ai.get_best_move(game)
       move.chomp
     end
-
 
   end
 end

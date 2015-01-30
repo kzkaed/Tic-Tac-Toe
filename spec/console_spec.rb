@@ -5,7 +5,6 @@ require 'tic-tac-toe/game'
 describe TicTacToe::Console do
 
   let(:console) { described_class.new }
-  #TODO game class let and clean Game.new from each it
   let(:game){ TicTacToe::Game.new }
 
 
@@ -23,11 +22,9 @@ describe TicTacToe::Console do
   end
 
   it 'puts a board with numbered cells via game board' do
-    #game = TicTacToe::Game.new
     board = game.board
     expect { console.display_board(board) }.to output("\n 1 | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9\n").to_stdout
   end
-
 
   it 'displays a formatted board' do
     board = [

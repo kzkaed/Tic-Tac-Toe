@@ -12,10 +12,5 @@ module TicTacToe
     def get_best_move(game)
       game.available_moves.pop
     end
-
-
-
-
-
   end
 end

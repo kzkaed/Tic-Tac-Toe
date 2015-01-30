@@ -14,25 +14,27 @@ module TicTacToe
 
     def get_best_move(game)
       fake = game.clone
-      natalie(fake, depth=0, 'o', scores={})
+      natalie(fake, depth=9, 'o', scores={})
       return @best_move
     end
 
-    def natalie(game, depth=0, mark, scores)
+    def natalie(game, depth=9, mark, scores)
       return value(game, depth) if game.end?
 
       game.available_moves.each do |move|
         game.create_board(move, mark)
-        scores[move] = -(natalie(game, depth + 1, next_player(mark), {}))
+        scores[move] = -(natalie(game, depth - 1, next_player(mark), {}))
         game.clear_at(move)
 
         @best_move = max_best_move(scores)
         @score = max_score(scores)
       end
 
-      if depth == 0
+      if depth == 9
+        puts "#{depth}: player:#{mark} scores#{scores} score#{@score} best_move#{@best_move}"
         return @best_move
-      elsif depth > 0
+      elsif depth < 9
+        puts "#{depth}: player:#{mark} scores#{scores} score#{@score} best_move#{@best_move}"
         return @score
       end
 

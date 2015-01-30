@@ -80,42 +80,7 @@ module TicTacToe
     def red_on_magenta(text)
       ; color(text, "\033[31;45m");
     end
-
-
   end
 
 end
 
-# "\033[37;40m#{White}\033[0m"
-# \033 = ESC
-#### ANSI Escape Sequences
-#### Example
-# ESC[1;33;44m
-# bright yellow text on blue
-
-#####
-# 0	Turn off all attributes
-# 1	Set bright mode
-# 4	Set underline mode
-# 5	Set blink mode
-# 7	Exchange foreground and background colors
-# 8	Hide text (foreground color would be the same as background)
-#
-# 30	Black text
-# 31	Red text
-# 32	Green text
-# 33	Yellow text
-# 34	Blue text
-# 35	Magenta text
-# 36	Cyan text
-# 37	White text
-# 39	Default text color
-# 40	Black background
-# 41	Red background
-# 42	Green background
-# 43	Yellow background
-# 44	Blue background
-# 45	Magenta background
-# 46	Cyan background
-# 47	White background
-# 49	Default background color
