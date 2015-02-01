@@ -32,9 +32,6 @@ class MockUserInterface
   end
 
   def display_game_result(player1, player2, game)
-    puts "display game result"
-    p game
-    puts game.winner?
     @display_game_result_called = true
   end
 

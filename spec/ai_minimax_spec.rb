@@ -14,7 +14,7 @@ describe TicTacToe::AI_Minimax do
   end
 
 
-=begin
+
   context 'returns move or score based on sort' do
     it 'sort out last best move from selection of scores' do
       scores = {"1"=>6, "2"=>-5, "3"=>8, "4"=>6, "6"=>6}
@@ -40,33 +40,9 @@ describe TicTacToe::AI_Minimax do
   end
 
 
-  describe 'moves from end of game' do
 
-    it 'return correct last move' do
-      game.board = [["x", "o", "x"],
-                    ["x", "o", "6"],
-                    ["o", "x", "o"]]
-      expect(ai_minimax.natalie(game, depth=9, 'o', scores={})).to eq("6")
-    end
 
-    it 'return correct 2nd last move' do
-      game.board = [["x", "o", "x"],
-                    ["x", "o", "6"],
-                    ["o", "x", "9"]]
 
-      expect(ai_minimax.natalie(game, depth=9, 'o', scores={})).to eq("6")
-    end
-
-    it 'o returns correct 3rd last move a block' do
-      game.board = [["x", "2", "x"],
-                    ["x", "o", "6"],
-                    ["o", "8", "9"]]
-
-      expect(ai_minimax.natalie(game, depth=9, 'o', scores={})).to eq("2") #correct block
-    end
-
-end
-=end
 
 
 context 'x seed' do
@@ -99,14 +75,7 @@ context 'x seed' do
       expect(ai_minimax.best_move).to eq("3")
     end
 
-    it 'x best move is 3 to win with 5 options available' do
-      game.board = [["1", "2", "3"],
-                    ["4", "x", "6"],
-                    ["x", "o", "o"]]
 
-      expect(ai_minimax.natalie(game, depth=0, 'x', scores={})).to eq(3)
-      expect(ai_minimax.best_move).to eq("3")
-    end
 end
 
 
@@ -127,25 +96,6 @@ context 'o seed' do
                   ["o", "x", "x"]]
 
     expect(ai_minimax.natalie(game, depth=0, 'o', scores={})).to eq(1)
-    expect(ai_minimax.best_move).to eq("3")
-  end
-
-
-  it 'o best move is 3 to block with 5 options available' do
-    game.board = [["1", "2", "3"],
-                  ["4", "o", "6"],
-                  ["o", "x", "x"]]#is to win
-
-    expect(ai_minimax.natalie(game, depth=0, 'o', scores={})).to eq(3)
-    expect(ai_minimax.best_move).to eq("3")
-  end
-
-  it 'x best move is 3 to win with 5 options available' do
-    game.board = [["1", "2", "3"],
-                  ["4", "x", "6"],
-                  ["x", "o", "o"]]#to block
-
-    expect(ai_minimax.natalie(game, depth=0, 'o', scores={})).to eq(2)
     expect(ai_minimax.best_move).to eq("3")
   end
 
