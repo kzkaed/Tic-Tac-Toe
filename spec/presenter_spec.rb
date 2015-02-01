@@ -5,10 +5,8 @@ require 'tic-tac-toe/color_string'
 
 describe TicTacToe::Presenter do
 
-
   let(:presenter){described_class.new(TicTacToe::ColorString.new)}
   let(:game){TicTacToe::Game.new}
-
 
   it 'compiles result win' do
     mark1 = 'x'
@@ -20,10 +18,8 @@ describe TicTacToe::Presenter do
                   ["x", "8", "9"]]
 
     result = {:winner => "\e[1;5;34mA Win!\e[0m", :player => "\e[1;35mPlayer 1\e[0m is the winner with \e[30;46mx\e[0m"}
-
     expect(presenter.compile_result(mark1, mark2, game)).to eq(result)
   end
-
 
   it 'compiles result draw' do
     mark1 = 'x'
@@ -38,9 +34,7 @@ describe TicTacToe::Presenter do
     expect(presenter.compile_result(mark1, mark2, game)).to eq(result)
   end
 
-
   it 'has a winner mark' do
-    presenter = TicTacToe::Presenter.new(TicTacToe::ColorString.new)
     board=([["x", "o", "3"],
             ["x", "o", "6"],
             ["x", "8", "9"]])
@@ -53,6 +47,7 @@ describe TicTacToe::Presenter do
     game.board=([["x", "o", "3"],
                  ["x", "o", "6"],
                  ["x", "8", "9"]])
+
     expect(presenter.score_result(game)).to eq([10, 0])
   end
 
@@ -62,10 +57,8 @@ describe TicTacToe::Presenter do
     game.board=([["x", "o", "3"],
                  ["x", "o", "6"],
                  ["x", "8", "9"]])
+
     expect(presenter.score_result(game)).to eq([10, 10])
   end
-
-
-
 
 end

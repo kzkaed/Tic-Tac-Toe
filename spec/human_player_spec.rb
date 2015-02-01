@@ -1,19 +1,17 @@
 require 'spec_helper'
 require 'tic-tac-toe/human_player'
 require 'tic-tac-toe/game'
-
+require 'mocks/mock_user_interface'
 
 describe TicTacToe::HumanPlayer do
   let(:user_interface) { MockUserInterface.new }
   let(:player1) { described_class.new(1, user_interface) }
   let(:player2) { described_class.new(2, user_interface) }
 
-
   it 'establishes player mark for player1' do
     expect(player1.player_number).to eq(1)
     expect(player1.mark).to eq('x')
   end
-
 
   it 'establishes player mark for player2' do
     expect(player2.player_number).to eq(2)

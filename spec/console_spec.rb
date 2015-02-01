@@ -1,12 +1,12 @@
 require 'spec_helper'
 require 'tic-tac-toe/console.rb'
 require 'tic-tac-toe/game'
+require 'stringio'
 
 describe TicTacToe::Console do
 
   let(:console) { described_class.new }
   let(:game){ TicTacToe::Game.new }
-
 
   before do
     $stdout = StringIO.new
@@ -51,17 +51,11 @@ describe TicTacToe::Console do
 
   it 'prompts the player and receives input' do
     $stdin.string = 1.to_s
-    game = TicTacToe::Game.new
     expect(console.receive_cell_number(game)).to eq(1.to_s)
   end
 
   it 'displays results' do
-    result = {'winner' => true,
-              'draw' => false,
-              'mark' => 'x',
-              'player' => 'player 1'}
 
-    game = TicTacToe::Game.new
     allow(game).to receive(:winner?).and_return(true)
     allow(game).to receive(:draw?).and_return(false)
 
@@ -69,9 +63,7 @@ describe TicTacToe::Console do
                   ["x", "o", "6"],
                   ["x", "8", "9"]]
 
-    result_string_hold = "\e[1;5;34mA Win!\e[0m\n\e[1;35mPlayer 1\e[0m is the winner with \e[30;46mx\e[0m\n10\n0\n"
     result_string = "\e[1;5;34mA Win!\e[0m\n\e[1;35mPlayer 1\e[0m is the winner with \e[30;46mx\e[0m\n"
-
     expect { console.display_game_result("x", "o", game) }.to output(result_string).to_stdout
   end
 

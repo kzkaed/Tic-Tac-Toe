@@ -28,7 +28,15 @@ To run Human to Computer game with ai:
 
     $ ruby bin/run.rb
 
-To run Human to Computer game with ai(dumb):
+To run Computer to Human gme with ai:
+
+    $ ruby bin/run.rb CH
+
+To run Computer to Computer game with ai:
+
+    $ ruby bin/run.rb CC
+
+To run Human to Dumb Computer game:
 
     $ ruby bin/run.rb D
 

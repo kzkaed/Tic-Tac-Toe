@@ -9,7 +9,6 @@ module TicTacToe
       @totals_x = 0
     end
 
-    #TODO player1 or 2 on score add to @return result
     def compile_result(mark1, mark2, game)
       win_mark = get_win_mark(game.board)
       player = set_winning_player(mark1, mark2, win_mark)
@@ -26,7 +25,7 @@ module TicTacToe
         result[:draw] = "#{color_string.blue_bright_blink("MEOW")}, Cat's Game!"
       end
 
-      result
+      return result
     end
 
     def score_result(game)
@@ -65,7 +64,7 @@ module TicTacToe
       elsif winner_mark == mark2
         mark_color_string = color_string.white_on_red(winner_mark)
       end
-      mark_color_string
+      return mark_color_string
     end
 
     def set_winning_player(mark1, mark2, winner_mark)
@@ -73,12 +72,10 @@ module TicTacToe
       return 'Player 2' if winner_mark == mark2
     end
 
-    #TODO sound_draw test
     def sound_draw
       `say 'meow, cat's game`
     end
 
-    #TODO sound_win test
     def sound_win
       `say 'bee's knees, a win`
     end

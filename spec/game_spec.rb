@@ -309,8 +309,7 @@ describe TicTacToe::Game do
     game.board = [["o", "x", "3"],
                   ["x", "o", "6"],
                   ["7", "8", "o"]]
+
     expect(game.winner).to eq('o')
   end
-
-
 end

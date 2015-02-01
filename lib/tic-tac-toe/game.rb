@@ -9,7 +9,7 @@ module TicTacToe
           ["4", "5", "6"],
           ["7", "8", "9"]
       ]
-      #TODO: board map hold x or o
+
       @board_map = {
           "1" => [0, 0],
           "2" => [0, 1],

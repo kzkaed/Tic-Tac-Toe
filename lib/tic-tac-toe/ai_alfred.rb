@@ -7,7 +7,6 @@ module TicTacToe
 
     def initialize
       @current_game = nil
-
     end
 
     def get_best_move(game,mark)

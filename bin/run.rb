@@ -19,26 +19,26 @@ if ARGV[0] == 'H'
   ARGV.clear
   player1 = TicTacToe::HumanPlayer.new(1,user_interface)
   player2 = TicTacToe::HumanPlayer.new(2,user_interface)
-  puts "Human to human game running with #{user_interface.class} user interface component"
+  puts "Human to Human game running with #{user_interface.class} user interface component"
 elsif ARGV[0] == 'D'
   ARGV.clear
   player1 = TicTacToe::HumanPlayer.new(1,user_interface)
   player2 = TicTacToe::ComputerPlayer.new(2, dumb_ai)
-  puts "Human to computer game running with #{dumb_ai.class} AI component"
+  puts "Human to Computer game running with #{dumb_ai.class} AI component"
 elsif ARGV[0] == 'CH'
   ARGV.clear
   player1 = TicTacToe::ComputerPlayer.new(1, smart_ai)
   player2 = TicTacToe::HumanPlayer.new(2,user_interface)
-  puts "Human to computer game running with #{dumb_ai.class} AI component"
+  puts "Computer to Human game running with #{smart_ai.class} AI component"
 elsif ARGV[0] == 'CC'
   ARGV.clear
   player1 = TicTacToe::ComputerPlayer.new(1, smart_ai)
-  player2 = TicTacToe::HumanPlayer.new(2,smart_ai)
-  puts "Human to computer game running with #{dumb_ai.class} AI component"
+  player2 = TicTacToe::ComputerPlayer.new(2,smart_ai)
+  puts "Computer to Computer game running with #{smart_ai.class} AI component"
 else
   player1 = TicTacToe::HumanPlayer.new(1,user_interface)
   player2 = TicTacToe::ComputerPlayer.new(2, smart_ai)
-  puts "Human to computer game running with #{smart_ai.class} AI component"
+  puts "Human to Computer game running with #{smart_ai.class} AI component"
 end
 
 TicTacToe::Runner.new(game, user_interface, player1, player2).run

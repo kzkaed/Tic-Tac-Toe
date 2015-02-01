@@ -1,10 +1,11 @@
 require 'spec_helper'
 require 'tic-tac-toe/computer_player'
 require 'tic-tac-toe/ai_alfred'
+require 'tic-tac-toe/game'
 
 describe TicTacToe::ComputerPlayer do
 
-  let(:ai) { TicTacToe::AI_Alfred.new } #alfred is acting as mock
+  let(:ai) { TicTacToe::AI_Alfred.new }
   let(:computer_player) { described_class.new(2, ai) }
 
   it 'establishes player mark for player' do

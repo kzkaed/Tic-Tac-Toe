@@ -32,7 +32,6 @@ module TicTacToe
       validate(cell_number, game)
     end
 
-    #TODO add result for presenter.score
     def display_game_result(mark1, mark2, game)
       result = @presenter.compile_result(mark1, mark2, game)
       result.each_value { |value| output("#{value}") }
@@ -55,32 +54,38 @@ module TicTacToe
     def create_board_output(board)
       cell_numbers = "\n 1 | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9"
       collect = ""
+
       board.each do |row|
         row.each do |cell|
           collect<<cell
         end
       end
+
       (1..9).each do |cell|
         cell_numbers.gsub!(/#{cell.to_s}/, collect[cell-1])
       end
-      cell_numbers
+
+      return cell_numbers
     end
 
     def validate(cell_number, game)
       available_cells = get_possible(game.moves)
+
       if available_cells.include?(cell_number)
         return cell_number
       else
         receive_cell_number(game)
       end
-     end
+    end
 
     def get_possible(moves)
       possible_moves = %w(1 2 3 4 5 6 7 8 9)
+
       moves.each do |move|
         possible_moves.select! {|num| num != move }
       end
-      possible_moves
+
+      return possible_moves
     end
 
     def output(value)
@@ -90,7 +95,6 @@ module TicTacToe
     def input
       gets.chomp
     end
-
 
   end
 end

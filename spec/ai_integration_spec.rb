@@ -8,17 +8,17 @@ require 'tic-tac-toe/ai_minimax'
 
 describe "Integration Test" do
 
-
   it "plays ai's against each other" do
     game = TicTacToe::Game.new
-    user_interface = TicTacToe::Console.new
+    #user_interface = TicTacToe::Console.new
+    user_interface = MockUserInterface.new
+    ai = TicTacToe::AI_Minimax.new
 
-
-    player1 = TicTacToe::ComputerPlayer.new(1, TicTacToe::AI_Minimax.new)
-    player2 = TicTacToe::ComputerPlayer.new(2, TicTacToe::AI_Minimax.new)
+    player1 = TicTacToe::ComputerPlayer.new(1, ai)
+    player2 = TicTacToe::ComputerPlayer.new(2, ai)
 
     TicTacToe::Runner.new(game, user_interface, player1, player2).run
-    puts user_interface
+    puts "Integration Test uses \n #{game.class} \n #{user_interface.class} \n #{player1.class} against #{player2.class} \n AI is #{ai.class}"
     expect(game.winner?).to eq  (false)
     expect(game.draw?).to eq(true)
   end

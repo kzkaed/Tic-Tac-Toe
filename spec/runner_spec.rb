@@ -36,23 +36,21 @@ describe TicTacToe::Runner do
     expect(user_interface.display_board_called?).to eq(true)
   end
 
-
   it "player1 get move from user interface" do
     move = "1"
     player1.moves << move
     runner.run
     expect(player1.determine_move(game,'x')).to eq("1")
     expect(player1.get_move_called?).to eq(true)
-
   end
 
   it "player2 gets move from ai" do
     move = "2"
     player2.moves << move
     runner.run
+
     expect(player2.determine_move(game,'o')).to eq("2")
     expect(player2.get_move_called?).to eq(true)
-
   end
 
   it 'send move and player to game and get a board' do
@@ -63,16 +61,15 @@ describe TicTacToe::Runner do
         ["4", "5", "6"],
         ["7", "8", "9"]
     ]
-
     current_board = [
         ["x", "2", "3"],
         ["4", "5", "6"],
         ["7", "8", "9"]
     ]
     runner.run
+
     expect(game.process_turn(move, mark)).to eq(current_board)
     expect(game.place_move_called?).to eq(true)
-
   end
 
   it 'updates game.board to current board' do
@@ -81,14 +78,11 @@ describe TicTacToe::Runner do
         ["4", "5", "6"],
         ["7", "8", "9"]
     ]
-
-
     current_board = [
         ["x", "2", "3"],
         ["4", "5", "6"],
         ["7", "8", "9"]
     ]
-
     runner.run
 
     expect(game.boards.pop).to eq(current_board)
@@ -135,8 +129,5 @@ describe TicTacToe::Runner do
   it 'only displays prepare if 1st time in game' do
     runner.run_again
     expect(runner.first_time_run).to eq(false)
-
   end
-
-
 end
