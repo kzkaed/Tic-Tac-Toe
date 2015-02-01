@@ -16,7 +16,7 @@ class MockPlayer
   end
 
 
-  def determine_move(game)
+  def determine_move(game,mark)
     @game = game
     @get_move_called = true
     return @moves.pop

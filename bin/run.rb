@@ -25,10 +25,15 @@ elsif ARGV[0] == 'D'
   player1 = TicTacToe::HumanPlayer.new(1,user_interface)
   player2 = TicTacToe::ComputerPlayer.new(2, dumb_ai)
   puts "Human to computer game running with #{dumb_ai.class} AI component"
-elsif ARGV[0] == 'C'
+elsif ARGV[0] == 'CH'
   ARGV.clear
-  player2 = TicTacToe::HumanPlayer.new(2,user_interface)
   player1 = TicTacToe::ComputerPlayer.new(1, smart_ai)
+  player2 = TicTacToe::HumanPlayer.new(2,user_interface)
+  puts "Human to computer game running with #{dumb_ai.class} AI component"
+elsif ARGV[0] == 'CC'
+  ARGV.clear
+  player1 = TicTacToe::ComputerPlayer.new(1, smart_ai)
+  player2 = TicTacToe::HumanPlayer.new(2,smart_ai)
   puts "Human to computer game running with #{dumb_ai.class} AI component"
 else
   player1 = TicTacToe::HumanPlayer.new(1,user_interface)

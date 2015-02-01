@@ -298,5 +298,19 @@ describe TicTacToe::Game do
     expect(game.available_moves).to eq(["3", "6", "7", "8", "9"])
   end
 
+  it 'returns winner if winner? otherwise it return nil' do
+    game.board = [["x", "o", "3"],
+                  ["o", "x", "6"],
+                  ["7", "8", "x"]]
+    expect(game.winner).to eq('x')
+  end
+
+  it 'returns winner if winner? otherwise it return nil' do
+    game.board = [["o", "x", "3"],
+                  ["x", "o", "6"],
+                  ["7", "8", "o"]]
+    expect(game.winner).to eq('o')
+  end
+
 
 end

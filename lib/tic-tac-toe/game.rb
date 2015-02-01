@@ -46,6 +46,11 @@ module TicTacToe
       diagonal? || across? || down?
     end
 
+    def winner
+      return get_winner_mark(@board) if winner?
+      nil
+    end
+
     def draw?
       remaining_values = board.flatten.uniq.length
       return remaining_values == 2 && !winner?
@@ -83,7 +88,8 @@ module TicTacToe
     end
 
 
-    def set_win_mark(board)
+    def get_winner_mark(board)
+      winner_mark = ""
       x_count = 0
       o_count = 0
       reduced = board.flatten.keep_if { |cell| cell == 'x' || cell == "o"}
@@ -95,10 +101,11 @@ module TicTacToe
         end
       end
       if x_count > o_count
-        @winning_mark = 'x'
+        winner_mark = 'x'
       else
-        @winner_mark =  'o'
+        winner_mark =  'o'
       end
+      winner_mark
     end
 
     def clear
