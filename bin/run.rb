@@ -15,11 +15,11 @@ smart_ai = TicTacToe::AI_Minimax.new
 player1 = nil
 player2 = nil
 
-if ARGV[0] == 'H'
+if ARGV[0] == 'HC'
   ARGV.clear
   player1 = TicTacToe::HumanPlayer.new(1,user_interface)
-  player2 = TicTacToe::HumanPlayer.new(2,user_interface)
-  puts "Human to Human game running with #{user_interface.class} user interface component"
+  player2 = TicTacToe::ComputerPlayer.new(2, smart_ai)
+  puts "Human to Computer game running with #{smart_ai.class} AI component"
 elsif ARGV[0] == 'D'
   ARGV.clear
   player1 = TicTacToe::HumanPlayer.new(1,user_interface)
@@ -37,8 +37,8 @@ elsif ARGV[0] == 'CC'
   puts "Computer to Computer game running with #{smart_ai.class} AI component"
 else
   player1 = TicTacToe::HumanPlayer.new(1,user_interface)
-  player2 = TicTacToe::ComputerPlayer.new(2, smart_ai)
-  puts "Human to Computer game running with #{smart_ai.class} AI component"
+  player2 = TicTacToe::HumanPlayer.new(2,user_interface)
+  puts "Human to Human game running with #{user_interface.class} user interface component"
 end
 
 TicTacToe::Runner.new(game, user_interface, player1, player2).run
