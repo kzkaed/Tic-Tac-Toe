@@ -4,20 +4,6 @@ Tic Tac Toe Console Game
 
 Play Tic-Tac-Toe as Human to Human, Computer to Human, Human to Computer, or Computer to Computer.
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'tic-tac-toe'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install tic-tac-toe
-
 ## Usage
 
 To run Human to Human game:
