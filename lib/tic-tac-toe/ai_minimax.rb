@@ -12,7 +12,6 @@ module TicTacToe
       return @best_move
     end
 
-    #max(a, b) = −min(−a, −b)
     def natalie(game, depth=0, player)
       if game.end?
         return value(game, player, depth)

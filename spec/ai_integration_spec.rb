@@ -18,7 +18,6 @@ describe "Integration Test" do
     player2 = TicTacToe::ComputerPlayer.new(2, ai)
 
     TicTacToe::Runner.new(game, user_interface, player1, player2).run
-    puts "Integration Test uses \n #{game.class} \n #{user_interface.class} \n #{player1.class} against #{player2.class} \n AI is #{ai.class}"
     expect(game.winner?).to eq  (false)
     expect(game.draw?).to eq(true)
   end
