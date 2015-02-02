@@ -1,24 +1,28 @@
 # Tic-Tac-Toe
-Tic Tac Toe Console Game
-
+Ruby Tic Tac Toe Console Game
 
 Play Tic-Tac-Toe as Human to Human, Computer to Human, Human to Computer, or Computer to Computer.
 
-## Usage
+##To play the game:
+
+$ git clone https://github.com/kzkaeding/tic-tac-toe.git
+
+$ cd tic-tac-toe
+
 
 To run Human to Human game:
 
-    $ ruby bin/run.rb H
-
-To run Human to Computer game with ai:
-
     $ ruby bin/run.rb
 
-To run Computer to Human gme with ai:
+To run Human to Computer game with smart ai:
+
+    $ ruby bin/run.rb HC
+
+To run Computer to Human gme with smart ai:
 
     $ ruby bin/run.rb CH
 
-To run Computer to Computer game with ai:
+To run Computer to Computer game with smart ai:
 
     $ ruby bin/run.rb CC
 
