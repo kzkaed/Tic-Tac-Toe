@@ -8,31 +8,28 @@ module TicTacToe
 
 
     def get_best_move(game, mark)
-      natalie(game, depth=0, mark,)
+      natalie(game, depth=0, mark)
       return @best_move
     end
 
-
+    #max(a, b) = −min(−a, −b)
     def natalie(game, depth=0, player)
       if game.end?
         return value(game, player, depth)
-
       else
-        test_value = -10
+        best_value = -1.0/0.0
         other_player = next_player(player)
 
         game.available_moves.each do |move|
           game.create_board(move, player)
-          score = -natalie(game, depth + 1, other_player)
+          value = -natalie(game, depth + 1, other_player)
           game.clear_at(move)
-          if score > test_value
-            test_value = score
-            if depth == 0
-              @best_move = move
-            end
+          if value > best_value
+            best_value = value
+            @best_move = move if depth == 0
           end
         end
-        return test_value
+        return best_value
       end
     end
 

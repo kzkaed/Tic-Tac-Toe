@@ -80,4 +80,10 @@ describe TicTacToe::AI_Minimax do
     depth = 5
     expect(ai_minimax.value(game, mark, depth)).to eq(-5)
   end
+
+  it 'gets best move' do
+
+    expect(ai_minimax.get_best_move(game,'x')).to eq("1")
+  end
+
 end
