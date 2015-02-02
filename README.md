@@ -2,7 +2,7 @@
 Tic Tac Toe Console Game
 
 
-TODO: Write a gem description
+Play Tic-Tac-Toe as Human to Human, Computer to Human, Human to Computer, or Computer to Computer.
 
 ## Installation
 
@@ -42,7 +42,7 @@ To run Human to Dumb Computer game:
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/mastermind/fork )
+1. Fork it ( https://github.com/kzkaed/tic-tac-toe/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
