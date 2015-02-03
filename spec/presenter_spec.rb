@@ -5,8 +5,10 @@ require 'tic-tac-toe/color_string'
 
 describe TicTacToe::Presenter do
 
-  let(:presenter){described_class.new(TicTacToe::ColorString.new)}
+  let(:presenter){described_class.new(TicTacToe::ColorString.new) }
+
   let(:game){TicTacToe::Game.new}
+
 
   it 'compiles result win' do
     mark1 = 'x'

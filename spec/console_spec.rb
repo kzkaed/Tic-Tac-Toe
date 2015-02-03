@@ -1,13 +1,18 @@
 require 'spec_helper'
-require 'tic-tac-toe/console.rb'
+require 'tic-tac-toe/console'
 require 'tic-tac-toe/game'
 require 'mocks/mock_io'
+require 'mocks/mock_audio'
 
 describe TicTacToe::Console do
 
   let(:game){ TicTacToe::Game.new }
   let!(:io) { MockIO.new }
-  let(:console) { described_class.new(io) }
+  let!(:audio){ MockAudio.new }
+
+  let(:console) { described_class.new(io, audio) }
+
+
 
 
   it 'displays welcome message' do
@@ -57,9 +62,11 @@ describe TicTacToe::Console do
     allow(game).to receive(:winner?).and_return(true)
     allow(game).to receive(:draw?).and_return(false)
 
+
     game.board = [["x", "o", "3"],
                   ["x", "o", "6"],
                   ["x", "8", "9"]]
+
 
     result_string = "\e[1;5;34mA Win!\e[0m\n\e[1;35mPlayer 1\e[0m is the winner with \e[30;46mx\e[0m\n"
     console.display_game_result("x", "o", game)
@@ -80,6 +87,16 @@ describe TicTacToe::Console do
   it 'prompts to play again and receives input' do
     io.gets_string = ' '
     expect(console.play_again?).to eq(false)
+  end
+
+  it 'plays type 1 audio with result' do
+    type = 1
+    expect(console.audio_play(type)).to eq("sound_win")
+  end
+
+  it 'plays type 2 audio with result' do
+    type = 2
+    expect(console.audio_play(type)).to eq("sound_draw")
   end
 
 

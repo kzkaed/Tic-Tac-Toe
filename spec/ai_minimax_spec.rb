@@ -81,10 +81,4 @@ describe TicTacToe::AI_Minimax do
     expect(ai_minimax.value(game, mark, depth)).to eq(-5)
   end
 
-=begin
-  it 'gets best move', :slow  do
-
-    expect(ai_minimax.get_best_move(game,'x')).to eq("1")
-  end
-=end
 end

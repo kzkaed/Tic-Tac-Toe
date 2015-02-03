@@ -7,9 +7,10 @@ module TicTacToe
     CELL_NUMBER_PROMPT = "Enter a cell number: "
     WELCOME = "Welcome to Tic Tac Toe"
 
-    def initialize(io=Kernel)
+    def initialize(io=Kernel, audio)
       @io = io
       @ansi_color = TicTacToe::ColorString.new
+      @audio = audio
       @presenter = TicTacToe::Presenter.new(@ansi_color)
 
       @cell_number_prompt = CELL_NUMBER_PROMPT
@@ -37,7 +38,18 @@ module TicTacToe
       result = @presenter.compile_result(mark1, mark2, game)
       output_string = ""
       result.each_value { |value| output_string << "#{value}\n" }
+      audio_play(1) if game.winner?
+      audio_play(2) if game.draw?
       output(output_string)
+    end
+
+    def audio_play(type)
+      if type == 1
+        @audio.sound_win
+      elsif type == 2
+        @audio.sound_draw
+      end
+
     end
 
     def play_again?

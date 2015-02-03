@@ -7,9 +7,11 @@ require 'tic-tac-toe/runner'
 require 'tic-tac-toe/computer_player'
 require 'tic-tac-toe/ai_alfred'
 require 'tic-tac-toe/ai_minimax'
+require 'tic-tac-toe/audio'
 
 game = TicTacToe::Game.new
-user_interface = TicTacToe::Console.new
+audio = TicTacToe::Audio.new
+user_interface = TicTacToe::Console.new(io=Kernel,audio)
 dumb_ai = TicTacToe::AI_Alfred.new
 smart_ai = TicTacToe::AI_Minimax.new
 player1 = nil

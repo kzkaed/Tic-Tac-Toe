@@ -1,6 +1,7 @@
 module TicTacToe
   class Presenter
-    attr_accessor :color_string, :totals_o, :totals_x
+    attr_accessor :color_string, :totals_o, :totals_x, :audio
+
 
     def initialize(color_string)
       @color_string = color_string
@@ -16,12 +17,10 @@ module TicTacToe
 
       result = {}
       if game.winner?
-        sound_win
         result[:winner] = color_string.blue_bright_blink("A Win!")
         result[:player] = "#{color_string.magenta_bright(player)} is the winner with #{mark_color_string}"
       end
       if game.draw?
-        sound_draw
         result[:draw] = "#{color_string.blue_bright_blink("MEOW")}, Cat's Game!"
       end
       return result
@@ -71,13 +70,7 @@ module TicTacToe
       return 'Player 2' if winner_mark == mark2
     end
 
-    def sound_draw
-      `say 'meow, cat's game`
-    end
 
-    def sound_win
-      `say 'bee's knees, a win`
-    end
 
   end
 end
