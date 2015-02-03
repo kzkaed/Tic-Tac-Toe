@@ -2,7 +2,6 @@ module TicTacToe
 
   class AI_Alfred
 
-    #AI_Alfred is a little dumb.
     attr_accessor :current_game
 
     def initialize

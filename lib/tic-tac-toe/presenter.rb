@@ -24,7 +24,6 @@ module TicTacToe
         sound_draw
         result[:draw] = "#{color_string.blue_bright_blink("MEOW")}, Cat's Game!"
       end
-
       return result
     end
 

@@ -5,9 +5,9 @@ Play Tic-Tac-Toe as Human to Human, Computer to Human, Human to Computer, or Com
 
 ##To play the game:
 
-$ git clone https://github.com/kzkaeding/tic-tac-toe.git
+    $ git clone https://github.com/kzkaeding/tic-tac-toe.git
 
-$ cd tic-tac-toe
+    $ cd tic-tac-toe
 
 
 To run Human to Human game:
@@ -29,6 +29,16 @@ To run Computer to Computer game with smart ai:
 To run Human to Dumb Computer game:
 
     $ ruby bin/run.rb D
+
+##To test:
+
+To test unit
+
+    $ rake spec
+
+To test unit and integration
+
+    $ rake all
 
 ## Contributing
 

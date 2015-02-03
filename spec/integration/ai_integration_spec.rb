@@ -6,7 +6,7 @@ require 'tic-tac-toe/runner'
 require 'tic-tac-toe/computer_player'
 require 'tic-tac-toe/ai_minimax'
 
-describe "Integration Test" do
+describe "Integration Test", :integration do
 
   it "plays ai's against each other" do
     game = TicTacToe::Game.new
