@@ -5,7 +5,7 @@ Play Tic-Tac-Toe as Human to Human, Computer to Human, Human to Computer, or Com
 
 ##To play the game:
 
-    $ git clone https://github.com/kzkaeding/tic-tac-toe.git
+    $ git clone https://github.com/kzkaed/tic-tac-toe.git
 
     $ cd tic-tac-toe
 
