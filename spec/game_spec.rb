@@ -62,7 +62,7 @@ describe TicTacToe::Game do
     expect(game.diagonal?).to eq(false)
   end
 
-  it 'gets a diagonal cells descent from board and checks for match' do
+  it 'gets diagonal cells descent from board and checks for match' do
     game.board = [["x", "2", "3"],
                   ["4", "x", "6"],
                   ["7", "8", "x"]]
@@ -103,7 +103,7 @@ describe TicTacToe::Game do
   end
 
 
-  it 'gets a row of cells from board and match' do
+  it 'gets a row of cells from board with match' do
     game.board = [["x", "x", "x"],
                   ["o", "o", "6"],
                   ["7", "8", "9"]]
@@ -124,7 +124,7 @@ describe TicTacToe::Game do
   end
 
 
-  it 'gets a column of cells from board and match' do
+  it 'gets a column of cells from board with match' do
     game.board = [["x", "2", "3"],
                   ["x", "5", "6"],
                   ["x", "8", "9"]]
@@ -168,11 +168,10 @@ describe TicTacToe::Game do
                   ["o", "x", "o"]]
 
     expect(game.draw?).to eq(true)
-
   end
 
 
-  it 'is has a win' do
+  it 'is a win' do
     game.board = [["x", "o", "x"],
                   ["x", "x", "o"],
                   ["o", "x", "x"]]
@@ -181,7 +180,7 @@ describe TicTacToe::Game do
     expect(game.winner?).to eq(true)
   end
 
-  it 'clears board and current turns moves' do
+  it 'clears board of current moves' do
     game.board = [["x", "o", "3"],
                   ["4", "5", "6"],
                   ["7", "8", "9"]]
