@@ -21,12 +21,12 @@ describe TicTacToe::Runner do
     expect(runner.user_interface).to eq(user_interface)
   end
 
-  it 'create player1 and player2' do
+  it 'creates player1 and player2' do
     expect(runner.player1).to eq(player1)
     expect(runner.player2).to eq(player2)
   end
 
-  it 'user interface displays game introduction' do
+  it 'displays game introduction via the user interface' do
     runner.run
     expect(user_interface.prepare).to eq(true)
   end

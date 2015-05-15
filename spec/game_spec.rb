@@ -22,18 +22,6 @@ describe TicTacToe::Game do
     player_mark = "x"
 
     expect(game.process_turn(move, player_mark)).to eq(board)
-  end
-
-  it 'creates boards' do
-    move = 1.to_s
-    board =[
-        ["x", "2", "3"],
-        ["4", "5", "6"],
-        ["7", "8", "9"]
-    ]
-    player_mark = "x"
-
-    game.process_turn(move, player_mark)
     expect(game.boards).to eq([board])
     expect(game.moves).to eq(["1"])
   end
@@ -54,12 +42,11 @@ describe TicTacToe::Game do
     ]
     player_mark = "o"
 
-
     expect(game.process_turn(move, player_mark)).to eq(next_board)
   end
 
 
-  it 'gets a diagonal cells from board no match' do
+  it 'gets diagonal cells from board with no match' do
     column = 0
     row = 0
     expect(game.get_cell(row, column)).to eq("1")
@@ -73,7 +60,6 @@ describe TicTacToe::Game do
     expect(game.get_cell(row, column)).to eq("9")
 
     expect(game.diagonal?).to eq(false)
-
   end
 
   it 'gets a diagonal cells descent from board and checks for match' do
@@ -94,7 +80,6 @@ describe TicTacToe::Game do
     expect(game.get_cell(row, column)).to eq("x")
 
     expect(game.diagonal?).to eq(true)
-
   end
 
   it 'gets diagonal cells ascent from board and checks for match' do
@@ -115,15 +100,14 @@ describe TicTacToe::Game do
     expect(game.get_cell(row, column)).to eq("x")
 
     expect(game.diagonal?).to eq(true)
-
   end
 
 
   it 'gets a row of cells from board and match' do
-    game.board = [["x", "x", "x"], #row 0
-                  ["o", "o", "6"], #row 1
-                  ["7", "8", "9"]] #row 2
-                #col 0     1    2
+    game.board = [["x", "x", "x"],
+                  ["o", "o", "6"],
+                  ["7", "8", "9"]]
+
     row = 0
     column = 0
     expect(game.get_cell(row, column)).to eq("x")
