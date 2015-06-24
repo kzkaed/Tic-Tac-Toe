@@ -12,7 +12,6 @@ module TicTacToe
       @ansi_color = TicTacToe::ColorString.new
       @audio = audio
       @presenter = TicTacToe::Presenter.new(@ansi_color)
-
       @cell_number_prompt = CELL_NUMBER_PROMPT
       @welcome = @ansi_color.magenta_bright(WELCOME)
     end
@@ -72,22 +71,20 @@ module TicTacToe
 
       board.each do |row|
         row.each do |cell|
-          collect<<cell
+          collect << cell
         end
       end
 
       (1..9).each do |cell|
         cell_numbers.gsub!(/#{cell.to_s}/, collect[cell-1])
       end
-
-      return cell_numbers
+      cell_numbers
     end
 
     def validate(cell_number, game)
       available_cells = get_possible(game.moves)
-
       if available_cells.include?(cell_number)
-        return cell_number
+        cell_number
       else
         receive_cell_number(game)
       end
@@ -95,12 +92,10 @@ module TicTacToe
 
     def get_possible(moves)
       possible_moves = %w(1 2 3 4 5 6 7 8 9)
-
       moves.each do |move|
         possible_moves.select! {|num| num != move }
       end
-
-      return possible_moves
+      possible_moves
     end
 
     def output(value)

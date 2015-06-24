@@ -5,7 +5,6 @@ module TicTacToe
 
     def initialize(color_string)
       @color_string = color_string
-
       @totals_o = 0
       @totals_x = 0
     end

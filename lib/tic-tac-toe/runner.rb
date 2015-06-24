@@ -16,7 +16,6 @@ module TicTacToe
     end
 
     def run
-
       @user_interface.prepare if first_time_run
       @user_interface.display_board(@game.board)
 
@@ -44,7 +43,5 @@ module TicTacToe
       run
     end
 
-
   end
-
 end
