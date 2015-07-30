@@ -20,21 +20,21 @@ module TicTacToe
       @user_interface.display_board(@game.board)
 
       until (@game.end?)
-        current_move = @player1.determine_move(@game)
-        current_board = @game.process_turn(current_move, @player1.mark)
-        @user_interface.display_board(current_board)
-        @game.board = current_board
+        make_move(player1)
         break if @game.end?
-
-        current_move = @player2.determine_move(@game)
-        current_board = @game.process_turn(current_move, @player2.mark)
-        @user_interface.display_board(current_board)
-        @game.board = current_board
+        make_move(player2)
       end
 
       @user_interface.display_game_result(@player1.mark, @player2.mark, @game)
 
       run_again if @user_interface.play_again?
+    end
+
+    def make_move(player)
+      current_move = player.determine_move(@game)
+      current_board = @game.process_turn(current_move, player.mark)
+      @user_interface.display_board(current_board)
+      @game.board = current_board
     end
 
     def run_again

@@ -11,6 +11,6 @@ class MockIO
   end
 
   def gets
-    return @gets_string
+    @gets_string
   end
 end
