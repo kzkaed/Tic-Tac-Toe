@@ -1,14 +1,24 @@
 # Tic-Tac-Toe
 Ruby Tic Tac Toe Console Game
 
-Play Tic-Tac-Toe as Human to Human, Computer to Human, Human to Computer, or Computer to Computer.
+## Dependencies
 
-##To play the game:
+Ruby 2.7.2
+
+## Set up
 
     $ git clone https://github.com/kzkaed/tic-tac-toe.git
 
     $ cd tic-tac-toe
+    
+    $ gem install bundler
+    
+    $ bundle install
 
+
+Play Tic-Tac-Toe as Human to Human, Computer to Human, Human to Computer, or Computer to Computer.
+
+## To play the game:
 
 To run Human to Human game:
 
